@@ -1,0 +1,25 @@
+the project contains two main staff an admin and a user you download the client wich automaticly looks for an already setted up if not its sets up the interface of the censor.
+when its up you have to sign up if there is allready a system in the house it will notify the main perant that some one had tried to sign up again
+after you sign up for the first time you can start sensoring some proccesses and sites using the gui for the sites and you would need to enter the domain and for the proccesses you need to enter the process name. need to check the name of the proccess beacuse a lot of proccesses have changed name
+you can sign in from any computer but the computer that you first sign in is the computer where the data will be stored. when you first set up you can also move the ownership or remove the system intirely.
+
+
+
+
+every computer is going to have an listening server and a sending server the ports are saved for this client and server once connected every one has the server
+once a the client is downloaded you need to put an ip of a computer who has the socket once the program had runned he opens a server and sends a broadcast to say i am here and i am up and syncronised.
+
+splitting the project between:
+talking
+sync
+blocking
+GUI backend
+GUI front end
+
+
+
+imports:
+sockets
+threading
+logging
+scapy
