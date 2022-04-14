@@ -11,7 +11,9 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
         my_sockets.add_client_sockets(computer=computer, client_socket=client_socket)
     else:
         while True:
-            pass  # handle incoming data
+            recived_data = my_sockets.server_sockets[computer].recv(1024)
+            if recived_data.decode() == "still alive?":
+                pass
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket):

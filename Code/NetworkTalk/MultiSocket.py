@@ -28,10 +28,18 @@ class MultiSocket(object):
     def open_socket(self) -> None:
         self._receiving_socket.listen()
 
-    def add_server_sockets(self, computer: Computer) -> None:
-        self._server_sockets[computer] = socket.socket()
-        self._server_sockets[computer].connect((computer.ip, computer.port))
-        globals.logger.info(f"{computer} add server socket")
+    def add_server_sockets_or_update(self, computer: Computer) -> None:
+        if not computer in self.server_sockets:
+            self._server_sockets[computer] = socket.socket()
+            self._server_sockets[computer].connect((computer.ip, computer.port))
+            globals.logger.info(f"{computer} add server socket")
+        else:
+            try:
+                self._server_sockets[computer].send(b"still alive?")
+            except:
+                self._server_sockets[computer] = socket.socket()
+                self._server_sockets[computer].connect((computer.ip, computer.port))
+                globals.logger.info(f"{computer} updated server socket")
 
     def get_computer_from_ip(self, ip: str):
         for i in self._server_sockets.keys():
@@ -39,7 +47,7 @@ class MultiSocket(object):
                 return i
         return None
 
-    def add_client_sockets(self,computer:Computer,client_socket:socket.socket):
+    def add_client_sockets(self, computer: Computer, client_socket: socket.socket):
         self._client_sockets[computer] = client_socket
         globals.logger.info(f"{computer} add client_socket {client_socket}")
 
