@@ -1,11 +1,15 @@
 import socket
+
 from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.constants import Constants
-from typing import Dict
+from typing import Dict, Any
 from Code import globals
 
 
 class MultiSocket(object):
+    _client_sockets: dict[Computer, socket.socket]
+    _receiving_socket: socket
+
     def __init__(self, computer: Computer):
         self._client_sockets = {}
         self._server_sockets = {}
@@ -24,10 +28,19 @@ class MultiSocket(object):
     def open_socket(self) -> None:
         self._receiving_socket.listen()
 
-    def add_computer(self, computer: Computer, client_socket: socket.socket) -> None:
-        self._client_sockets[computer] = client_socket
+    def add_server_sockets(self, computer: Computer) -> None:
         self._server_sockets[computer] = socket.socket()
         self._server_sockets[computer].connect((computer.ip, computer.port))
+
+    def get_computer_from_ip(self, ip: str):
+        for i in self._server_sockets.keys():
+            if ip == i.ip:
+                return i
+        return None
+
+    def add_client_sockets(self):
+        sending_socket, tcp_address = self.receiving_socket.accept()
+        self._client_sockets[self.get_computer_from_ip(tcp_address[0])] = sending_socket
 
     def broadcast_message(self, message: str) -> None:
         self._broadcast_send_socket.sendto(message.encode(), (Constants.broadcast_ip, Constants.udp_listening_port))
