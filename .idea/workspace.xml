@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa3d31fd-516b-4187-9e0f-bf289c30e4ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Code/StartUp/discovery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/5 units Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/5 units Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/logfile.log" beforeDir="false" afterPath="$PROJECT_DIR$/Code/logfile.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
