@@ -12,7 +12,7 @@ from Code.StartUp.broadcasting import *
 
 def start_up(my_sockets: MultiSocket):
     threading.Thread(target=start_broadcast_setup, args=(my_sockets,)).start()
-    threading.Thread(target=SocketHandler.handle_connections, args=(my_sockets,))
+    threading.Thread(target=SocketHandler.handle_connections_wrapper, args=(my_sockets,)).start()
 
 
 def get_min(addr: List[Dict[str, str]], by: str):

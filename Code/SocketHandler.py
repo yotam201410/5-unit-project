@@ -15,6 +15,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket):
+    my_sockets.receiving_socket.listen()
     while True:
         client_socket, tcp_address = my_sockets.receiving_socket.accept()
         globals.logger.debug(f"new client connected from {tcp_address}")
