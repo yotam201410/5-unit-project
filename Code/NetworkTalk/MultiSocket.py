@@ -29,7 +29,10 @@ class MultiSocket(object):
         self._receiving_socket.listen()
 
     def add_server_sockets_or_update(self, computer: Computer) -> None:
-        if not computer in self.server_sockets:
+        current_computer = self.get_computer_from_ip(computer.ip)
+        if current_computer is not None and current_computer.port == 0:
+            current_computer.port, current_computer.name, current_computer.mac, current_computer.subnet_mask = computer.port, computer.name, computer.mac, computer.subnet_mask
+        if computer not in self.server_sockets:
             self._server_sockets[computer] = socket.socket()
             self._server_sockets[computer].connect((computer.ip, computer.port))
             globals.logger.info(f"{computer} add server socket")

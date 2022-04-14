@@ -7,7 +7,7 @@ from Code import globals
 
 def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, client_address: Tuple[str, int]):
     computer = my_sockets.get_computer_from_ip(client_address[0])
-    if computer not in my_sockets.client_sockets:
+    if computer not in my_sockets.client_sockets or my_sockets.client_sockets[computer] is None:
         my_sockets.add_client_sockets(computer=computer, client_socket=client_socket)
     else:
         while True:

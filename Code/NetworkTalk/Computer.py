@@ -5,7 +5,8 @@ log = logging.getLogger()
 
 
 class Computer(object):
-    def __init__(self, ip: str, subnet_mask: str, mac: str, name: str, port: int):
+    def __init__(self, ip: str = "0.0.0.0", subnet_mask: str = "0.0.0.0", mac: str = "0.0.0.0.0.0", name: str = "",
+                 port: int = -1):
         assert type(ip) == str
         assert type(mac) == str
         assert type(name) == str
@@ -46,6 +47,7 @@ class Computer(object):
     @name.setter
     def name(self, name: str):
         assert type(name) == str
+        self.name = name
 
     def __str__(self) -> str:
         return f"{self.name}, {self.ip}, {self.subnet_mask}, {self.port}, {self.mac}"
@@ -58,7 +60,11 @@ class Computer(object):
         return self.__hash__() == hash(other)
 
     def __dict__(self) -> dict:
-        return {"name": self.name, "port": self.port, "mac": self.mac, "ip": self.ip, "subnet mask": self.subnet_mask}
+        return {"name": self._name, "port": self._port, "mac": self._mac, "ip": self._ip,
+                "subnet mask": self._subnet_mask}
+
+    def __repr__(self):
+        return "%s(%r)" % (self.__class__, self.__dict__())
 
     @property
     def subnet_mask(self) -> str:
