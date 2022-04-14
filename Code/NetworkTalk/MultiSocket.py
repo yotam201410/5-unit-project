@@ -31,6 +31,7 @@ class MultiSocket(object):
     def add_server_sockets(self, computer: Computer) -> None:
         self._server_sockets[computer] = socket.socket()
         self._server_sockets[computer].connect((computer.ip, computer.port))
+        globals.logger.debug(f"{computer} add server socket")
 
     def get_computer_from_ip(self, ip: str):
         for i in self._server_sockets.keys():
@@ -38,9 +39,9 @@ class MultiSocket(object):
                 return i
         return None
 
-    def add_client_sockets(self):
-        sending_socket, tcp_address = self.receiving_socket.accept()
-        self._client_sockets[self.get_computer_from_ip(tcp_address[0])] = sending_socket
+    def add_client_sockets(self,computer:Computer,client_socket:socket.socket):
+        self._client_sockets[computer] = client_socket
+        globals.logger.debug(f"{computer} add client_socket {client_socket}")
 
     def broadcast_message(self, message: str) -> None:
         self._broadcast_send_socket.sendto(message.encode(), (Constants.broadcast_ip, Constants.udp_listening_port))
