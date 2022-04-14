@@ -17,10 +17,9 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
                                                splited_data[4]
             connected_computer = Computer(ip=ip, mac=mac, port=port, name=name, subnet_mask=subnet_mask)
             threading.Thread(target=my_sockets.add_server_sockets, args=(connected_computer,)).start()
-        elif splited_data == "who is up" and my_sockets.computer.ip != udp_address[0]:
-            my_sockets.broadcast_message(
-                f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
-            threading.Thread()
+        elif splited_data[-1] == "who is up" and my_sockets.computer.ip != udp_address[0]:
+            threading.Thread(target= my_sockets.broadcast_message(
+                f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")).start()
 
 
 def broadcast(my_sockets: MultiSocket):
