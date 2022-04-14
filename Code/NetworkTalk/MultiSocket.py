@@ -1,9 +1,9 @@
 import socket
+from typing import Dict
 
+from Code import globals
 from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.constants import Constants
-from typing import Dict, Any
-from Code import globals
 
 
 class MultiSocket(object):
@@ -31,7 +31,7 @@ class MultiSocket(object):
     def add_server_sockets(self, computer: Computer) -> None:
         self._server_sockets[computer] = socket.socket()
         self._server_sockets[computer].connect((computer.ip, computer.port))
-        globals.logger.debug(f"{computer} add server socket")
+        globals.logger.info(f"{computer} add server socket")
 
     def get_computer_from_ip(self, ip: str):
         for i in self._server_sockets.keys():
@@ -41,11 +41,11 @@ class MultiSocket(object):
 
     def add_client_sockets(self,computer:Computer,client_socket:socket.socket):
         self._client_sockets[computer] = client_socket
-        globals.logger.debug(f"{computer} add client_socket {client_socket}")
+        globals.logger.info(f"{computer} add client_socket {client_socket}")
 
     def broadcast_message(self, message: str) -> None:
         self._broadcast_send_socket.sendto(message.encode(), (Constants.broadcast_ip, Constants.udp_listening_port))
-        globals.logger.debug(f"sent broadcast '{message}'")
+        globals.logger.info(f"sent broadcast '{message}'")
 
     @property
     def udp_server_socket(self) -> socket.socket:

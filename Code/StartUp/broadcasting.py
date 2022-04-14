@@ -12,15 +12,15 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
         if udp_address[0] != my_sockets.computer.ip:
             print(data.decode())
         if "up" == splited_data[-1] and udp_address[0] != my_sockets.computer.ip:
-            globals.logger.debug(f"recived up message '{data.decode()}'")
+            globals.logger.info(f"received 'up' BROADCAST message '{data.decode()}'")
             ip, subnet_mask, mac, port, name = splited_data[0], splited_data[1], splited_data[2], int(splited_data[3]), \
                                                splited_data[4]
             connected_computer = Computer(ip=ip, mac=mac, port=port, name=name, subnet_mask=subnet_mask)
             threading.Thread(target=my_sockets.add_server_sockets, args=(connected_computer,)).start()
         elif splited_data == "who is up" and my_sockets.computer.ip != udp_address[0]:
+            globals.logger.info(f"received 'who is up' BROADCAST message '{data.decode()}' ")
             my_sockets.broadcast_message(
                 f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
-            threading.Thread()
 
 
 def broadcast(my_sockets: MultiSocket):

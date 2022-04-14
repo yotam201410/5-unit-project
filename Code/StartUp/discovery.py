@@ -9,7 +9,7 @@ from Code.NetworkTalk import MultiSocket
 
 def send_ping(ip):
     subprocess.call(['ping', '-n', '1', '-w', '100', ip])
-    globals.logger.debug(f"sent ping to {ip}")
+    globals.logger.info(f"sent ping to {ip}")
 
 
 def start_discovery(my_sockets: MultiSocket):
