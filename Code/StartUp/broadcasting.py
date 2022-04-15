@@ -9,8 +9,7 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
     while True:
         data, udp_address = my_sockets.udp_server_socket.recvfrom(1024)  # port here randomly generated
         splited_data = data.decode().split(',')
-        if udp_address[0] != my_sockets.computer.ip:
-            print(data.decode())
+
         if "up" == splited_data[-1] and udp_address[0] != my_sockets.computer.ip:
             globals.logger.info(f"received 'up' BROADCAST message '{data.decode()}'")
             ip, subnet_mask, mac, port, name = splited_data[0], splited_data[1], splited_data[2], int(splited_data[3]), \
@@ -20,7 +19,7 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
         elif splited_data[-1] == "who is up" and my_sockets.computer.ip != udp_address[0]:
             globals.logger.info("received 'who is up' BROADCAST message")
             if my_sockets.get_computer_from_ip(udp_address[0]) is None:
-                my_sockets.client_sockets[Computer(ip=udp_address[0],mac=None,port=-1,name=None,subnet_mask=None)]= None
+                my_sockets.client_sockets[Computer(ip=udp_address[0])] = None
             threading.Thread(target=my_sockets.broadcast_message(
                 f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")).start()
 

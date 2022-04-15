@@ -32,6 +32,7 @@ class MultiSocket(object):
         current_computer = self.get_computer_from_ip(computer.ip)
         if current_computer is not None and current_computer.port == 0:
             current_computer.port, current_computer.name, current_computer.mac, current_computer.subnet_mask = computer.port, computer.name, computer.mac, computer.subnet_mask
+            print(current_computer)
         if computer not in self.server_sockets:
             self._server_sockets[computer] = socket.socket()
             self._server_sockets[computer].connect((computer.ip, computer.port))
