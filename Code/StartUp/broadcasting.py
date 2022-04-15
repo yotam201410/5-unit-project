@@ -27,7 +27,10 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
 def broadcast(my_sockets: MultiSocket):
     while True:
         my_sockets.broadcast_message("who is up")
-        time.sleep(0.25)
+        globals.logger.info("CLIENTS " + str(my_sockets.client_sockets))
+        globals.logger.info("SERVERS " + str(my_sockets.server_sockets))
+
+        time.sleep(30)
 
 
 def start_broadcast_setup(my_sockets: MultiSocket):
