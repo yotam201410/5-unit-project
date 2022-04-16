@@ -74,3 +74,8 @@ class Computer(object):
     def subnet_mask(self, subnet: str) -> None:
         assert type(subnet) == str
         self._subnet_mask = subnet
+
+    @mac.setter
+    def mac(self, mac: str) -> None:
+        assert type(mac) == str
+        self._mac = mac
