@@ -30,7 +30,10 @@ class MultiSocket(object):
 
     def add_server_sockets_or_update(self, computer: Computer) -> None:
         current_computer = self.get_computer_from_ip(computer.ip)
-        if current_computer is not None and current_computer.port == 0:
+        print(f"Current Computer {current_computer}")
+        print(f"parmather computer {computer}")
+        print(self.server_sockets)
+        if current_computer is not None and current_computer.port == -1:
             current_computer.port, current_computer.name, current_computer.mac, current_computer.subnet_mask = computer.port, computer.name, computer.mac, computer.subnet_mask
             print(current_computer)
         if computer not in self.server_sockets:
@@ -44,6 +47,7 @@ class MultiSocket(object):
                 self._server_sockets[computer] = socket.socket()
                 self._server_sockets[computer].connect((computer.ip, computer.port))
                 globals.logger.info(f"{computer} updated server socket")
+        print(self.server_sockets)
 
     def get_computer_from_ip(self, ip: str):
         for i in self._server_sockets.keys():

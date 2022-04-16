@@ -12,8 +12,9 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
 
     else:
         while True:
-            recived_data = my_sockets.server_sockets[computer].recv(1024)
+            recived_data = my_sockets.client_sockets[computer].recv(1024)
             if recived_data.decode() == "still alive?":
+                globals.logger.info(f"Received Still Alive From {my_sockets.client_sockets[computer]}")
                 pass
 
 
