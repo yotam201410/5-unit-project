@@ -10,6 +10,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
     connected_computer = my_sockets.get_computer_from_ip_client_sockets(client_address[0])
     my_sockets.client_sockets[connected_computer] = client_socket
     if connected_computer is None:
+        print()
         raise Exception("idk wtf juts happened")
     while True:
         recived_data = client_socket.recv(1024)

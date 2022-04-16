@@ -14,7 +14,7 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
             if splited_data[-1] == "up":
                 connected_computer = Computer(ip=splited_data[0], subnet_mask=splited_data[1], mac=splited_data[2],
                                               port=int(splited_data[3]), name=splited_data[4])
-                my_sockets.add_server_sockets(connected_computer)
+                threading.Thread(target= my_sockets.add_server_sockets,args = (connected_computer,)).start()
             elif splited_data[-1] == "who is up":
                 if my_sockets.get_computer_from_ip_client_sockets(udp_addrees[0]) is None:
                     connected_computer = Computer(ip=udp_addrees[0], port=Constants.listening_server_port)

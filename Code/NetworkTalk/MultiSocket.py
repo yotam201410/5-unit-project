@@ -30,6 +30,9 @@ class MultiSocket(object):
         self._receiving_socket.listen()
 
     def add_server_sockets(self, connected_computer: Computer) -> None:
+        print(connected_computer)
+        print(f"CLIENTS {self.client_sockets}")
+        print(f"SERVERS {self._server_sockets}")
         if connected_computer not in self._server_sockets:
             self._server_sockets[connected_computer] = socket.socket()
             self._server_sockets[connected_computer].connect((connected_computer.ip, connected_computer.port))
