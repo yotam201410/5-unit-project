@@ -1,3 +1,4 @@
+import logging
 import socket
 from Code.NetworkTalk.MultiSocket import MultiSocket
 from typing import Tuple
@@ -6,16 +7,13 @@ from Code import globals
 
 
 def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, client_address: Tuple[str, int]):
-    computer = my_sockets.get_computer_from_ip(client_address[0])
-    if computer not in my_sockets.client_sockets or my_sockets.client_sockets[computer] is None:
-        my_sockets.add_client_sockets(computer=computer, client_socket=client_socket)
-
-    else:
-        while True:
-            recived_data = my_sockets.client_sockets[computer].recv(1024)
-            if recived_data.decode() == "still alive?":
-                globals.logger.info(f"Received Still Alive From {my_sockets.client_sockets[computer]}")
-                pass
+    connected_computer = my_sockets.get_computer_from_ip_client_sockets(client_address[0])
+    my_sockets.client_sockets[connected_computer] = client_socket
+    if connected_computer is None:
+        raise Exception("idk wtf juts happened")
+    while True:
+        recived_data = client_socket.recv(1024)
+        logging.info(f"got {recived_data} from {connected_computer}")
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket):

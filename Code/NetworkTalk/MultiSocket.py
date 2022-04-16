@@ -7,8 +7,9 @@ from Code.NetworkTalk.constants import Constants
 
 
 class MultiSocket(object):
+    _server_sockets: dict[Computer, socket.socket]
     _client_sockets: dict[Computer, socket.socket]
-    _receiving_socket: socket
+    _receiving_socket: socket.socket
 
     def __init__(self, computer: Computer):
         self._client_sockets = {}
@@ -28,34 +29,35 @@ class MultiSocket(object):
     def open_socket(self) -> None:
         self._receiving_socket.listen()
 
-    def add_server_sockets_or_update(self, computer: Computer) -> None:
-        current_computer = self.get_computer_from_ip(computer.ip)
-        print(f"Current Computer {current_computer}")
-        print(f"parmather computer {computer}")
-        print(self.server_sockets)
-        if current_computer is not None and current_computer.port == -1:
-            current_computer.port, current_computer.name, current_computer.mac, current_computer.subnet_mask = computer.port, computer.name, computer.mac, computer.subnet_mask
-            print(current_computer)
-        if computer not in self.server_sockets:
-            self._server_sockets[computer] = socket.socket()
-            self._server_sockets[computer].connect((computer.ip, computer.port))
-            globals.logger.info(f"{computer} add server socket")
+    def add_server_sockets(self, connected_computer: Computer) -> None:
+        if connected_computer not in self._server_sockets:
+            self._server_sockets[connected_computer] = socket.socket()
+            self._server_sockets[connected_computer].connect((connected_computer.ip, connected_computer.port))
         else:
             try:
-                self._server_sockets[computer].send(b"still alive?")
+                self._server_sockets[connected_computer].send(b"still alive?")
             except:
-                self._server_sockets[computer] = socket.socket()
-                self._server_sockets[computer].connect((computer.ip, computer.port))
-                globals.logger.info(f"{computer} updated server socket")
-        print(self.server_sockets)
+                del self._server_sockets[connected_computer]
+                self._server_sockets[connected_computer] = socket.socket()
+                self._server_sockets[connected_computer].connect((connected_computer.ip, connected_computer.port))
+        if self.get_computer_from_ip_client_sockets(connected_computer.ip) is not None and self.get_computer_from_ip_client_sockets(connected_computer.ip).name == "":
+            client_computer = self.get_computer_from_ip_client_sockets(connected_computer.ip)
+            client_computer.mac, client_computer.subnet_mask, client_computer.port, client_computer.name = connected_computer.mac, connected_computer.subnet_mask, connected_computer.port, connected_computer.name
 
-    def get_computer_from_ip(self, ip: str):
+    def get_computer_from_ip_server_sockets(self, ip: str):
         for i in self._server_sockets.keys():
             if ip == i.ip:
                 return i
         return None
 
+    def get_computer_from_ip_client_sockets(self, ip: str):
+        for i in self._client_sockets.keys():
+            if ip == i.ip:
+                return i
+        return None
+
     def add_client_sockets(self, computer: Computer, client_socket: socket.socket):
+
         self._client_sockets[computer] = client_socket
         globals.logger.info(f"{computer} add client_socket {client_socket}")
 

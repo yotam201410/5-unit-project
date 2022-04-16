@@ -3,25 +3,26 @@ import threading
 from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.MultiSocket import MultiSocket
 from Code import globals
+from Code.NetworkTalk.constants import Constants
 
 
 def handle_broadcast_answer(my_sockets: MultiSocket):
     while True:
-        data, udp_address = my_sockets.udp_server_socket.recvfrom(1024)  # port here randomly generated
-        splited_data = data.decode().split(',')
-
-        if "up" == splited_data[-1] and udp_address[0] != my_sockets.computer.ip:
-            globals.logger.info(f"received 'up' BROADCAST message '{data.decode()}'")
-            ip, subnet_mask, mac, port, name = splited_data[0], splited_data[1], splited_data[2], int(splited_data[3]), \
-                                               splited_data[4]
-            connected_computer = Computer(ip=ip, mac=mac, port=port, name=name, subnet_mask=subnet_mask)
-            threading.Thread(target=my_sockets.add_server_sockets_or_update, args=(connected_computer,)).start()
-        elif splited_data[-1] == "who is up" and my_sockets.computer.ip != udp_address[0]:
-            globals.logger.info("received 'who is up' BROADCAST message")
-            if my_sockets.get_computer_from_ip(udp_address[0]) is None:
-                my_sockets.client_sockets[Computer(ip=udp_address[0])] = None
-            threading.Thread(target=my_sockets.broadcast_message(
-                f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")).start()
+        data, udp_addrees = my_sockets.udp_server_socket.recvfrom(1024)
+        if udp_addrees[0] != my_sockets.computer.ip:
+            splited_data = data.decode().split(',')
+            if splited_data[-1] == "up":
+                connected_computer = Computer(ip=splited_data[0], subnet_mask=splited_data[1], mac=splited_data[2],
+                                              port=int(splited_data[3]), name=splited_data[4])
+                my_sockets.add_server_sockets(connected_computer)
+            elif splited_data[-1] == "who is up":
+                if my_sockets.get_computer_from_ip_client_sockets(udp_addrees[0]) is None:
+                    connected_computer = Computer(ip=udp_addrees[0], port=Constants.listening_server_port)
+                    my_sockets.client_sockets[connected_computer] = None
+                else:
+                    pass
+                my_sockets.broadcast_message(
+                    f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
 
 
 def broadcast(my_sockets: MultiSocket):
