@@ -47,7 +47,7 @@ class Computer(object):
     @name.setter
     def name(self, name: str):
         assert type(name) == str
-        self.name = name
+        self._name = name
 
     def __str__(self) -> str:
         return f"{self.name}, {self.ip}, {self.subnet_mask}, {self.port}, {self.mac}"
