@@ -17,7 +17,8 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
         connected_computer.client_socket = client_socket
     while True:
         recived_data = client_socket.recv(1024)
-        logging.info(f"got {recived_data} from {connected_computer}")
+        if recived_data != b'':
+            logging.info(f"got {recived_data} from {connected_computer}")
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket):
