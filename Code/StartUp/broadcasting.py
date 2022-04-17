@@ -14,9 +14,8 @@ def handle_client_addition(connected_computer: Computer):
     else:
         try:
             connected_computer.server_socket.send(b'stiil up?')
-        except TimeoutError as e:
+        except ConnectionResetError as e:
             connected_computer.server_socket = None
-            raise e
 
 
 def handle_broadcast_answer(my_sockets: MultiSocket):
