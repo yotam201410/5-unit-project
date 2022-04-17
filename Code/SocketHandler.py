@@ -9,7 +9,7 @@ from Code import globals
 
 
 def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, client_address: Tuple[str, int]):
-    if client_address[0] in my_sockets.connected_computers:
+    if client_address[0] not in my_sockets.connected_computers:
         my_sockets.connected_computers[client_address[0]] = Computer(ip=client_address[0], client_socket=client_socket)
         connected_computer = my_sockets.connected_computers[client_address[0]]
     else:
