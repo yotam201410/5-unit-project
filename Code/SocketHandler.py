@@ -13,7 +13,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, cl
         my_sockets.connected_computers[client_address[0]] = Computer(ip=client_address[0], client_socket=client_socket)
         connected_computer = my_sockets.connected_computers[client_address[0]]
     else:
-        connected_computer = my_sockets.connected_computers[client_socket[0]]
+        connected_computer = my_sockets.connected_computers[client_address[0]]
         connected_computer.client_socket = client_socket
     while True:
         recived_data = client_socket.recv(1024)
