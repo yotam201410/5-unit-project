@@ -14,8 +14,9 @@ def handle_client_addition(connected_computer: Computer):
     else:
         try:
             connected_computer.server_socket.send(b'stiil up?')
-        except TimeoutError:
+        except TimeoutError as e:
             connected_computer.server_socket = None
+            raise e
 
 
 def handle_broadcast_answer(my_sockets: MultiSocket):
@@ -29,10 +30,10 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
                                               port=int(splited_data[3]), name=splited_data[4])
                 if connected_computer.ip in my_sockets.connected_computers:
                     my_sockets.connected_computers[splited_data[0]].update_computer(connected_computer)
-                    threading.Thread(target=handle_client_addition, args=(connected_computer,)).start()
+                    threading.Thread(target=handle_client_addition, args=(my_sockets.connected_computers[splited_data[0]],)).start()
                 else:
                     my_sockets.connected_computers[splited_data[0]] = connected_computer
-                    threading.Thread(target=handle_client_addition, args=(connected_computer,)).start()
+                    threading.Thread(target=handle_client_addition, args=(my_sockets.connected_computers[splited_data[0]],)).start()
 
             elif splited_data[-1] == "who is up":
                 if udp_addrees[0] not in my_sockets.connected_computers:
@@ -45,8 +46,7 @@ def broadcast(my_sockets: MultiSocket):
     while True:
         my_sockets.broadcast_message("who is up")
         globals.logger.info(str(my_sockets.connected_computers))
-
-        time.sleep(30)
+        time.sleep(5)
 
 
 def start_broadcast_setup(my_sockets: MultiSocket):
