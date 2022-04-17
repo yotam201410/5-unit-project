@@ -4,6 +4,19 @@ from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.MultiSocket import MultiSocket
 from Code import globals
 from Code.NetworkTalk.constants import Constants
+import socket
+
+
+def handle_client_addition(connected_computer: Computer):
+    if connected_computer.server_socket is None:
+        connected_computer.server_socket = socket.socket()
+        connected_computer.server_socket.connect((connected_computer.ip, connected_computer.port))
+    else:
+        try:
+            connected_computer.server_socket.send(b'stiil up?')
+        except TimeoutError as e:
+            connected_computer.server_socket = None
+            raise e
 
 
 def handle_broadcast_answer(my_sockets: MultiSocket):
@@ -15,13 +28,16 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
             if splited_data[-1] == "up":
                 connected_computer = Computer(ip=splited_data[0], subnet_mask=splited_data[1], mac=splited_data[2],
                                               port=int(splited_data[3]), name=splited_data[4])
-                threading.Thread(target= my_sockets.add_server_sockets,args = (connected_computer,)).start()
-            elif splited_data[-1] == "who is up":
-                if my_sockets.get_computer_from_ip_client_sockets(udp_addrees[0]) is None:
-                    connected_computer = Computer(ip=udp_addrees[0], port=Constants.listening_server_port)
-                    my_sockets.client_sockets[connected_computer] = None
+                if connected_computer.ip in my_sockets.connected_computers:
+                    my_sockets.connected_computers[splited_data[0]].update_computer(connected_computer)
+                    threading.Thread(target=handle_client_addition, args=(my_sockets.connected_computers[splited_data[0]],)).start()
                 else:
-                    pass
+                    my_sockets.connected_computers[splited_data[0]] = connected_computer
+                    threading.Thread(target=handle_client_addition, args=(my_sockets.connected_computers[splited_data[0]],)).start()
+
+            elif splited_data[-1] == "who is up":
+                if udp_addrees[0] not in my_sockets.connected_computers:
+                    my_sockets.connected_computers[udp_addrees[0]] = Computer(ip=udp_addrees[0])
                 my_sockets.broadcast_message(
                     f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
 
@@ -29,10 +45,8 @@ def handle_broadcast_answer(my_sockets: MultiSocket):
 def broadcast(my_sockets: MultiSocket):
     while True:
         my_sockets.broadcast_message("who is up")
-        globals.logger.info("CLIENTS " + str(my_sockets.client_sockets))
-        globals.logger.info("SERVERS " + str(my_sockets.server_sockets))
-
-        time.sleep(30)
+        globals.logger.info(str(my_sockets.connected_computers))
+        time.sleep(5)
 
 
 def start_broadcast_setup(my_sockets: MultiSocket):

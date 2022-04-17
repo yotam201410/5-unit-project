@@ -9,14 +9,16 @@ from Code import globals
 
 
 def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, client_address: Tuple[str, int]):
-    connected_computer = my_sockets.get_computer_from_ip_client_sockets(client_address[0])
-    if connected_computer is None:
-        connected_computer = Computer(ip = client_address[0])
-        my_sockets.client_sockets[connected_computer] = client_socket
-
+    if client_address[0] not in my_sockets.connected_computers:
+        my_sockets.connected_computers[client_address[0]] = Computer(ip=client_address[0], client_socket=client_socket)
+        connected_computer = my_sockets.connected_computers[client_address[0]]
+    else:
+        connected_computer = my_sockets.connected_computers[client_address[0]]
+        connected_computer.client_socket = client_socket
     while True:
         recived_data = client_socket.recv(1024)
-        logging.info(f"got {recived_data} from {connected_computer}")
+        if recived_data != b'':
+            logging.info(f"got {recived_data} from {connected_computer}")
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket):
