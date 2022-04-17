@@ -91,3 +91,4 @@ class Computer(object):
         self._mac = computer.mac
         self._port = computer.port
         self._subnet_mask = computer.subnet_mask
+        self._name = computer._name
