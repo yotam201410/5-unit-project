@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa3d31fd-516b-4187-9e0f-bf289c30e4ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Code/SocketHandler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/MultiSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/MultiSocket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/logfile.log" beforeDir="false" afterPath="$PROJECT_DIR$/Code/logfile.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +29,31 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="rewrite" />
+                    <option name="lastUsedInstant" value="1650204478" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1650204477" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="23m9J1Ours3cZA4VbSIdloG6khk" />
   <component name="ProjectViewState">

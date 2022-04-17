@@ -1,12 +1,15 @@
+from __future__ import annotations
+
 from socket import socket
 import logging
+from typing import Optional
 
 log = logging.getLogger()
 
 
 class Computer(object):
     def __init__(self, ip: str = "0.0.0.0", subnet_mask: str = "0.0.0.0", mac: str = "0.0.0.0.0.0", name: str = "",
-                 port: int = -1):
+                 port: int = -1, server_socket: Optional[socket] = None, client_socket: Optional[socket] = None):
         assert type(ip) == str
         assert type(mac) == str
         assert type(name) == str
@@ -17,6 +20,8 @@ class Computer(object):
         self._name = name
         self._port = port
         self._subnet_mask = subnet_mask
+        self.server_socket = server_socket
+        self.client_socket = client_socket
 
     @property
     def ip(self) -> str:
@@ -61,7 +66,8 @@ class Computer(object):
 
     def __dict__(self) -> dict:
         return {"name": self._name, "port": self._port, "mac": self._mac, "ip": self._ip,
-                "subnet mask": self._subnet_mask}
+                "subnet mask": self._subnet_mask, "server_socket": self.server_socket,
+                "client_socket": self.client_socket}
 
     def __repr__(self):
         return "%s(%r)" % (self.__class__, self.__dict__())
@@ -79,3 +85,9 @@ class Computer(object):
     def mac(self, mac: str) -> None:
         assert type(mac) == str
         self._mac = mac
+
+    def update_computer(self, computer: Computer):
+        self._ip = computer.ip
+        self._mac = computer.mac
+        self._port = computer.port
+        self._subnet_mask = computer.subnet_mask
