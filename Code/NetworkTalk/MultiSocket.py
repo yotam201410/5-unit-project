@@ -5,6 +5,7 @@ from Code import globals
 from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.constants import Constants
 from typing import *
+import ssl
 
 
 class NoSuchComputer(Exception):
@@ -23,6 +24,9 @@ class MultiSocket(object):
         self._udp_server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         self._udp_server_socket.bind((computer.ip, Constants.udp_listening_port))
         self._receiving_socket.bind((computer.ip, computer.port))
+        self._receiving_socket = ssl.wrap_socket(self._receiving_socket, cert_reqs=ssl.CERT_NONE, server_side=True,
+                                                 keyfile=f"{Constants.server_file}.key",
+                                                 certfile=f"{Constants.server_file}.crt")
         self._computer = computer
 
     @property
