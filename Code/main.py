@@ -71,12 +71,13 @@ def main():
     my_computer = Computer(ip=network_config["addr"],
                            mac=':'.join(re.findall('..', '%012x' % uuid.getnode())), name=socket.gethostname(),
                            port=Constants.listening_server_port, subnet_mask=network_config["netmask"])
-    my_sockets = MultiSocket(my_computer)
-    print(my_computer)
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.server_file}.key",
                             CERT_FILE=f"{Constants.server_file}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.client_file}.key",
                             CERT_FILE=f"{Constants.client_file}.crt")
+    my_sockets = MultiSocket(my_computer)
+    print(my_computer)
+
 
     start_up(my_sockets)
 

@@ -1,3 +1,245 @@
-INFO 2022-04-17 17:42:12,030 - sent broadcast '192.168.1.105,255.255.255.0,48:e7:da:56:b5:fe,5000,LAPTOP-4DTAK9D6,up'
-INFO 2022-04-17 17:42:12,030 - sent broadcast 'who is up'
-INFO 2022-04-17 17:42:12,031 - {}
+INFO 2022-04-19 19:36:34,627 - sent broadcast '192.168.1.105,255.255.255.0,48:e7:da:56:b5:fe,5000,LAPTOP-4DTAK9D6,up'
+INFO 2022-04-19 19:36:34,627 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:34,627 - {}
+INFO 2022-04-19 19:36:39,642 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:39,643 - {}
+INFO 2022-04-19 19:36:44,650 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:44,650 - {}
+INFO 2022-04-19 19:36:49,659 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:49,660 - {}
+INFO 2022-04-19 19:36:54,670 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:54,670 - {}
+INFO 2022-04-19 19:36:59,679 - sent broadcast 'who is up'
+INFO 2022-04-19 19:36:59,679 - {}
+INFO 2022-04-19 19:37:04,685 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:04,685 - {}
+INFO 2022-04-19 19:37:09,701 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:09,701 - {}
+INFO 2022-04-19 19:37:14,706 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:14,706 - {}
+INFO 2022-04-19 19:37:19,708 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:19,708 - {}
+INFO 2022-04-19 19:37:24,710 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:24,710 - {}
+INFO 2022-04-19 19:37:29,712 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:29,712 - {}
+INFO 2022-04-19 19:37:34,719 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:34,720 - {}
+INFO 2022-04-19 19:37:39,733 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:39,733 - {}
+INFO 2022-04-19 19:37:44,734 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:44,734 - {}
+INFO 2022-04-19 19:37:49,755 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:49,755 - {}
+INFO 2022-04-19 19:37:54,776 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:54,776 - {}
+INFO 2022-04-19 19:37:59,786 - sent broadcast 'who is up'
+INFO 2022-04-19 19:37:59,786 - {}
+INFO 2022-04-19 19:38:04,804 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:04,804 - {}
+INFO 2022-04-19 19:38:09,819 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:09,819 - {}
+INFO 2022-04-19 19:38:14,826 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:14,826 - {}
+INFO 2022-04-19 19:38:19,847 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:19,848 - {}
+INFO 2022-04-19 19:38:24,857 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:24,857 - {}
+INFO 2022-04-19 19:38:29,863 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:29,863 - {}
+INFO 2022-04-19 19:38:34,870 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:34,870 - {}
+INFO 2022-04-19 19:38:39,885 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:39,885 - {}
+INFO 2022-04-19 19:38:44,898 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:44,898 - {}
+INFO 2022-04-19 19:38:49,912 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:49,912 - {}
+INFO 2022-04-19 19:38:54,936 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:54,936 - {}
+INFO 2022-04-19 19:38:59,946 - sent broadcast 'who is up'
+INFO 2022-04-19 19:38:59,946 - {}
+INFO 2022-04-19 19:39:04,949 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:04,949 - {}
+INFO 2022-04-19 19:39:09,961 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:09,961 - {}
+INFO 2022-04-19 19:39:14,970 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:14,971 - {}
+INFO 2022-04-19 19:39:19,983 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:19,983 - {}
+INFO 2022-04-19 19:39:24,998 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:24,998 - {}
+INFO 2022-04-19 19:39:30,010 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:30,010 - {}
+INFO 2022-04-19 19:39:35,025 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:35,025 - {}
+INFO 2022-04-19 19:39:40,029 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:40,029 - {}
+INFO 2022-04-19 19:39:45,040 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:45,040 - {}
+INFO 2022-04-19 19:39:50,052 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:50,052 - {}
+INFO 2022-04-19 19:39:55,068 - sent broadcast 'who is up'
+INFO 2022-04-19 19:39:55,068 - {}
+INFO 2022-04-19 19:40:00,075 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:00,075 - {}
+INFO 2022-04-19 19:40:05,091 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:05,091 - {}
+INFO 2022-04-19 19:40:10,103 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:10,103 - {}
+INFO 2022-04-19 19:40:15,114 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:15,114 - {}
+INFO 2022-04-19 19:40:20,125 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:20,126 - {}
+INFO 2022-04-19 19:40:25,142 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:25,142 - {}
+INFO 2022-04-19 19:40:30,158 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:30,158 - {}
+INFO 2022-04-19 19:40:35,165 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:35,165 - {}
+INFO 2022-04-19 19:40:40,167 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:40,167 - {}
+INFO 2022-04-19 19:40:45,181 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:45,181 - {}
+INFO 2022-04-19 19:40:50,184 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:50,184 - {}
+INFO 2022-04-19 19:40:55,192 - sent broadcast 'who is up'
+INFO 2022-04-19 19:40:55,193 - {}
+INFO 2022-04-19 19:41:00,205 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:00,205 - {}
+INFO 2022-04-19 19:41:05,216 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:05,216 - {}
+INFO 2022-04-19 19:41:10,230 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:10,230 - {}
+INFO 2022-04-19 19:41:15,245 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:15,245 - {}
+INFO 2022-04-19 19:41:20,262 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:20,262 - {}
+INFO 2022-04-19 19:41:25,270 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:25,270 - {}
+INFO 2022-04-19 19:41:30,275 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:30,276 - {}
+INFO 2022-04-19 19:41:35,290 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:35,290 - {}
+INFO 2022-04-19 19:41:40,293 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:40,293 - {}
+INFO 2022-04-19 19:41:45,297 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:45,298 - {}
+INFO 2022-04-19 19:41:50,301 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:50,301 - {}
+INFO 2022-04-19 19:41:55,315 - sent broadcast 'who is up'
+INFO 2022-04-19 19:41:55,315 - {}
+INFO 2022-04-19 19:42:00,325 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:00,325 - {}
+INFO 2022-04-19 19:42:05,331 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:05,331 - {}
+INFO 2022-04-19 19:42:10,344 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:10,344 - {}
+INFO 2022-04-19 19:42:15,360 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:15,360 - {}
+INFO 2022-04-19 19:42:20,363 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:20,363 - {}
+INFO 2022-04-19 19:42:25,378 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:25,378 - {}
+INFO 2022-04-19 19:42:30,381 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:30,381 - {}
+INFO 2022-04-19 19:42:35,394 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:35,394 - {}
+INFO 2022-04-19 19:42:40,401 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:40,401 - {}
+INFO 2022-04-19 19:42:45,417 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:45,417 - {}
+INFO 2022-04-19 19:42:50,444 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:50,444 - {}
+INFO 2022-04-19 19:42:55,448 - sent broadcast 'who is up'
+INFO 2022-04-19 19:42:55,448 - {}
+INFO 2022-04-19 19:43:00,458 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:00,458 - {}
+INFO 2022-04-19 19:43:05,460 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:05,460 - {}
+INFO 2022-04-19 19:43:10,480 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:10,481 - {}
+INFO 2022-04-19 19:43:15,484 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:15,484 - {}
+INFO 2022-04-19 19:43:20,496 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:20,496 - {}
+INFO 2022-04-19 19:43:25,501 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:25,501 - {}
+INFO 2022-04-19 19:43:30,512 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:30,512 - {}
+INFO 2022-04-19 19:43:35,528 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:35,528 - {}
+INFO 2022-04-19 19:43:40,541 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:40,541 - {}
+INFO 2022-04-19 19:43:45,567 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:45,567 - {}
+INFO 2022-04-19 19:43:50,583 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:50,583 - {}
+INFO 2022-04-19 19:43:55,595 - sent broadcast 'who is up'
+INFO 2022-04-19 19:43:55,596 - {}
+INFO 2022-04-19 19:44:00,607 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:00,607 - {}
+INFO 2022-04-19 19:44:05,618 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:05,618 - {}
+INFO 2022-04-19 19:44:10,626 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:10,626 - {}
+INFO 2022-04-19 19:44:15,634 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:15,634 - {}
+INFO 2022-04-19 19:44:20,646 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:20,646 - {}
+INFO 2022-04-19 19:44:25,654 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:25,654 - {}
+INFO 2022-04-19 19:44:30,664 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:30,664 - {}
+INFO 2022-04-19 19:44:35,681 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:35,681 - {}
+INFO 2022-04-19 19:44:40,694 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:40,694 - {}
+INFO 2022-04-19 19:44:45,703 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:45,703 - {}
+INFO 2022-04-19 19:44:50,716 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:50,717 - {}
+INFO 2022-04-19 19:44:55,722 - sent broadcast 'who is up'
+INFO 2022-04-19 19:44:55,723 - {}
+INFO 2022-04-19 19:45:00,732 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:00,733 - {}
+INFO 2022-04-19 19:45:05,744 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:05,744 - {}
+INFO 2022-04-19 19:45:10,758 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:10,758 - {}
+INFO 2022-04-19 19:45:15,766 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:15,766 - {}
+INFO 2022-04-19 19:45:20,775 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:20,775 - {}
+INFO 2022-04-19 19:45:25,783 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:25,783 - {}
+INFO 2022-04-19 19:45:30,807 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:30,807 - {}
+INFO 2022-04-19 19:45:35,834 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:35,834 - {}
+INFO 2022-04-19 19:45:40,848 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:40,848 - {}
+INFO 2022-04-19 19:45:45,854 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:45,854 - {}
+INFO 2022-04-19 19:45:50,866 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:50,866 - {}
+INFO 2022-04-19 19:45:55,877 - sent broadcast 'who is up'
+INFO 2022-04-19 19:45:55,877 - {}
+INFO 2022-04-19 19:46:00,887 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:00,887 - {}
+INFO 2022-04-19 19:46:05,897 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:05,897 - {}
+INFO 2022-04-19 19:46:10,901 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:10,901 - {}
+INFO 2022-04-19 19:46:15,914 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:15,915 - {}
+INFO 2022-04-19 19:46:20,928 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:20,928 - {}
+INFO 2022-04-19 19:46:25,949 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:25,949 - {}
+INFO 2022-04-19 19:46:30,956 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:30,956 - {}
+INFO 2022-04-19 19:46:35,970 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:35,970 - {}
+INFO 2022-04-19 19:46:40,972 - sent broadcast 'who is up'
+INFO 2022-04-19 19:46:40,972 - {}

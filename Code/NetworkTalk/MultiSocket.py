@@ -14,7 +14,7 @@ class NoSuchComputer(Exception):
 
 class MultiSocket(object):
     connected_computers: Dict[str, Computer]
-    _receiving_socket: socket.socket
+    _receiving_socket: ssl.SSLSocket | socket.socket
 
     def __init__(self, computer: Computer):
         self.connected_computers = {}
@@ -45,5 +45,5 @@ class MultiSocket(object):
         return self._udp_server_socket
 
     @property
-    def receiving_socket(self) -> socket.socket:
+    def receiving_socket(self) -> ssl.SSLSocket:
         return self._receiving_socket
