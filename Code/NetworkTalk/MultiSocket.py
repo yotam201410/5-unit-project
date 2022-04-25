@@ -22,11 +22,11 @@ class MultiSocket(object):
         self._broadcast_send_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         self._broadcast_send_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         self._udp_server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-        self._udp_server_socket.bind((computer.ip, Constants.udp_listening_port))
+        self._udp_server_socket.bind((computer.ip, Constants.UDP_LISTENING_PORT))
         self._receiving_socket.bind((computer.ip, computer.port))
         self._receiving_socket = ssl.wrap_socket(self._receiving_socket, cert_reqs=ssl.CERT_NONE, server_side=True,
-                                                 keyfile=f"{Constants.server_file}.key",
-                                                 certfile=f"{Constants.server_file}.crt")
+                                                 keyfile=f"{Constants.SERVER_FILE}.key",
+                                                 certfile=f"{Constants.SERVER_FILE}.crt")
         self._computer = computer
 
     @property
@@ -37,7 +37,7 @@ class MultiSocket(object):
         self._receiving_socket.listen()
 
     def broadcast_message(self, message: str) -> None:
-        self._broadcast_send_socket.sendto(message.encode(), (Constants.broadcast_ip, Constants.udp_listening_port))
+        self._broadcast_send_socket.sendto(message.encode(), (Constants.BROADCAST_IP, Constants.UDP_LISTENING_PORT))
         globals.logger.info(f"sent broadcast '{message}'")
 
     @property

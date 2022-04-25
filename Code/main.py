@@ -6,6 +6,7 @@ from typing import List, Dict
 import netifaces
 from Code import SocketHandler, ssl_generation
 from Code.StartUp.broadcasting import *
+from Code.SQLManagment.SQLClient import SQLClient
 
 
 def start_up(my_sockets: MultiSocket):
@@ -56,6 +57,7 @@ def sort_adrr(addr: List[Dict[str, str]], by: str):
 
 
 def main():
+    db_client = SQLClient(db_file_name=Constants.DATABASE_FILE_NAME)
     adrr = []
     for i in netifaces.interfaces():
         try:
@@ -67,17 +69,16 @@ def main():
     adrr = sort_adrr(adrr, "addr")
     print(adrr)
     network_config = adrr[1]
-    Constants.broadcast_ip = network_config["broadcast"]
+    Constants.BROADCAST_IP = network_config["broadcast"]
     my_computer = Computer(ip=network_config["addr"],
                            mac=':'.join(re.findall('..', '%012x' % uuid.getnode())), name=socket.gethostname(),
-                           port=Constants.listening_server_port, subnet_mask=network_config["netmask"])
-    ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.server_file}.key",
-                            CERT_FILE=f"{Constants.server_file}.crt")
-    ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.client_file}.key",
-                            CERT_FILE=f"{Constants.client_file}.crt")
+                           port=Constants.LISTENING_SERVER_PORT, subnet_mask=network_config["netmask"])
+    ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.SERVER_FILE}.key",
+                            CERT_FILE=f"{Constants.SERVER_FILE}.crt")
+    ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
+                            CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
     my_sockets = MultiSocket(my_computer)
     print(my_computer)
-
 
     start_up(my_sockets)
 

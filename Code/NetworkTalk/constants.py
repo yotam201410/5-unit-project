@@ -1,6 +1,7 @@
 class Constants:
-    listening_server_port = 5000
-    udp_listening_port = 4000
-    broadcast_ip = "192.168.1.255"
-    server_file = "server"
-    client_file = "client"
+    DATABASE_FILE_NAME = "database.db"
+    LISTENING_SERVER_PORT = 5000
+    UDP_LISTENING_PORT = 4000
+    BROADCAST_IP = "192.168.1.255"
+    SERVER_FILE = "server"
+    CLIENT_FILE = "client"

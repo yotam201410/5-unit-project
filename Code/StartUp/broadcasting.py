@@ -13,8 +13,8 @@ def handle_client_addition(connected_computer: Computer):
         connected_computer.server_socket = socket.socket()
         connected_computer.server_socket = ssl.wrap_socket(connected_computer.server_socket, cert_reqs=ssl.CERT_NONE,
                                                            server_side=False,
-                                                           keyfile=f"{Constants.client_file}.key",
-                                                           certfile=f"{Constants.client_file}.crt")
+                                                           keyfile=f"{Constants.CLIENT_FILE}.key",
+                                                           certfile=f"{Constants.CLIENT_FILE}.crt")
         connected_computer.server_socket.connect((connected_computer.ip, connected_computer.port))
     else:
         try:
