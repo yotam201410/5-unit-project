@@ -19,7 +19,7 @@ def handle_client_addition(connected_computer: Computer):
     else:
         try:
             connected_computer.server_socket.send(b'stiil up?')
-        except ConnectionResetError as e:
+        except:
             connected_computer.server_socket = None
 
 

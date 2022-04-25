@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="fa3d31fd-516b-4187-9e0f-bf289c30e4ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/Code/client.key" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/logfile.log" beforeDir="false" afterPath="$PROJECT_DIR$/Code/logfile.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/Code/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/test/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/test/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/clientSSL.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/clientSSL.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

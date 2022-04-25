@@ -54,7 +54,7 @@ cert_gen(commonName="Yotam")
 listening_socket = socket.socket()
 listening_socket = ssl.wrap_socket(listening_socket, cert_reqs=ssl.CERT_NONE, server_side=False, keyfile="client.key",
                                    certfile="client.crt")
-listening_socket.connect(("127.0.0.1", 7000))
+listening_socket.connect(("192.168.1.105", 7000))
 
 while True:
     listening_socket.send(input("enter what you want to send\n").encode())
