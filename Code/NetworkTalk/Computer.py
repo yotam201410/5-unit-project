@@ -3,13 +3,13 @@ from __future__ import annotations
 from socket import socket
 import logging
 from typing import Optional
-
+import ssl
 log = logging.getLogger()
 
 
 class Computer(object):
     def __init__(self, ip: str = "0.0.0.0", subnet_mask: str = "0.0.0.0", mac: str = "0.0.0.0.0.0", name: str = "",
-                 port: int = -1, server_socket: Optional[socket] = None, client_socket: Optional[socket] = None):
+                 port: int = -1, server_socket: Optional[ssl.SSLSocket] = None, client_socket: Optional[ssl.SSLSocket] = None):
         assert type(ip) == str
         assert type(mac) == str
         assert type(name) == str

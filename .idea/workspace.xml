@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="fa3d31fd-516b-4187-9e0f-bf289c30e4ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/Computer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/NetworkTalk/MultiSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/NetworkTalk/MultiSocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/StartUp/broadcasting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/Code/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/logfile.log" beforeDir="false" afterPath="$PROJECT_DIR$/Code/logfile.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/Code/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/test/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/test/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/clientSSL.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/clientSSL.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +44,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="ssl-socket" />
+                    <option name="lastUsedInstant" value="1650373003" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="rewrite" />
                     <option name="lastUsedInstant" value="1650204478" />
@@ -98,7 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="broadcasting" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="clientSSL" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="5 units Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -106,32 +116,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Code/StartUp" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Code/StartUp/broadcasting.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="globals" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="5 units Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Code" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Code/globals.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/clientSSL.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -153,6 +142,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Code/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="serverSSL" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="5 units Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/serverSSL.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,10 +195,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.clientSSL" />
+        <item itemvalue="Python.serverSSL" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.MultiSocket" />
-        <item itemvalue="Python.globals" />
-        <item itemvalue="Python.broadcasting" />
       </list>
     </recent_temporary>
   </component>

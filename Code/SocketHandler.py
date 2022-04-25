@@ -1,6 +1,5 @@
 import logging
-import socket
-
+from ssl import SSLSocket
 from Code.NetworkTalk.Computer import Computer
 from Code.NetworkTalk.MultiSocket import MultiSocket
 from typing import Tuple
@@ -8,7 +7,7 @@ import threading
 from Code import globals
 
 
-def handle_connections(my_sockets: MultiSocket, client_socket: socket.socket, client_address: Tuple[str, int]):
+def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client_address: Tuple[str, int]):
     if client_address[0] not in my_sockets.connected_computers:
         my_sockets.connected_computers[client_address[0]] = Computer(ip=client_address[0], client_socket=client_socket)
         connected_computer = my_sockets.connected_computers[client_address[0]]
