@@ -1,5 +1,6 @@
 import sqlite3
 from typing import *
+import hashlib
 
 
 def get_amount_of_question_marks(rows_name: Tuple) -> str:
@@ -88,3 +89,7 @@ class SQLClient(object):
 
     def commit(self):
         self.db.commit()
+
+    def add_password(self, password: str):
+        hashed_pass = hashlib.sha256(password.encode()).hexdigest()
+        print(hashed_pass)

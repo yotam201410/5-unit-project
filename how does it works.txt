@@ -23,3 +23,13 @@ sockets
 threading
 logging
 scapy
+
+
+GUI looking:
+pages:
+you get prompt up with set up page if you click set up it would ask you to give an username and password and set everything up
+if you are stted up its automaticly gives you a login page where you have to put your username and password if you dont remmeber your username or password you can regenerate it using an hashed file that would be a back up and the only key to reset your username and password
+after you set up/logged in you can see the sites that are blocked and have a remove button
+you also have an extra field that you can add with it more sites by entering the domain name and pressing add *mybe add exception computers
+nececry classes:
+n site field which has a label and the remove button with its function
