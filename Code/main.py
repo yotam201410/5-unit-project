@@ -2,11 +2,10 @@ import re
 import socket
 import uuid
 from typing import List, Dict
-
 import netifaces
-from Code import SocketHandler, ssl_generation
-from Code.StartUp.broadcasting import *
-from Code.SQLManagment.SQLClient import SQLClient
+import SocketHandler, ssl_generation
+from StartUp.broadcasting import *
+from SQLManagment.SQLClient import SQLClient
 
 
 def start_up(my_sockets: MultiSocket):
@@ -52,7 +51,9 @@ def sort_adrr(addr: List[Dict[str, str]], by: str):
         index = get_min(addr, by)
         l.append(addr[index])
         addr.remove(addr[index])
-
+    for i in addr:
+        if "127" == i["adrr"][0:4]:
+            addr.remove(i) 
     return l
 
 
@@ -64,7 +65,6 @@ def main():
             adrr.append(netifaces.ifaddresses(i)[netifaces.AF_INET][0])
         except:
             continue
-    print(adrr)
 
     adrr = sort_adrr(adrr, "addr")
     print(adrr)

@@ -1,2 +1,2 @@
 import tkinter
-from Code.SQLManagment import SQLManager
+from SQLManagment.SQLClient import SQLClient

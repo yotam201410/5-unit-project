@@ -1,9 +1,9 @@
 import time
 import threading
-from Code.NetworkTalk.Computer import Computer
-from Code.NetworkTalk.MultiSocket import MultiSocket
-from Code import globals
-from Code.NetworkTalk.constants import Constants
+from NetworkTalk.Computer import Computer
+from NetworkTalk.MultiSocket import MultiSocket
+import globals
+from NetworkTalk.constants import Constants
 import socket
 import ssl
 

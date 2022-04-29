@@ -10,3 +10,6 @@ Code/logfile.log
 *.iml
 Code/.idea/misc.xml
 *.xml
+*.crt
+*.key
+*.db
