@@ -13,3 +13,8 @@ Code/.idea/misc.xml
 *.crt
 *.key
 *.db
+*.toc
+*.pkg
+*.spec
+*.crt
+*.key

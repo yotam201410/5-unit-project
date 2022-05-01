@@ -6,9 +6,11 @@ import netifaces
 import SocketHandler, ssl_generation
 from StartUp.broadcasting import *
 from SQLManagment.SQLClient import SQLClient
+from GUI.GUIClient import GUIClient
 
 
-def start_up(my_sockets: MultiSocket):
+def start_up(my_sockets: MultiSocket,sql_client: SQLClient):
+    sql_client.create_tables()
     threading.Thread(target=start_broadcast_setup, args=(my_sockets,)).start()
     threading.Thread(target=SocketHandler.handle_connections_wrapper, args=(my_sockets,)).start()
 
@@ -53,7 +55,7 @@ def sort_adrr(addr: List[Dict[str, str]], by: str):
         addr.remove(addr[index])
     for i in addr:
         if "127" == i["adrr"][0:4]:
-            addr.remove(i) 
+            addr.remove(i)
     return l
 
 
@@ -80,7 +82,7 @@ def main():
     my_sockets = MultiSocket(my_computer)
     print(my_computer)
 
-    start_up(my_sockets)
-
+    start_up(my_sockets,db_client)
+    gui = GUIClient(db_client,my_sockets)
 
 main()

@@ -83,13 +83,15 @@ class SQLClient(object):
     def create_table(self, table_name: str, columns_names_types_and_constrains: Tuple[List[str], ...],
                      without_row_id: bool = False):
         cursor = self.db.cursor()
+        print(f"CREATE TABLE IF NOT EXISTS {table_name} {handle_columns_names_types_and_constrains(columns_names_types_and_constrains)} {'WITHOUT ROWID' if without_row_id else ''}")
         cursor.execute(
             f"CREATE TABLE IF NOT EXISTS {table_name} {handle_columns_names_types_and_constrains(columns_names_types_and_constrains)} {'WITHOUT ROWID' if without_row_id else ''}")
         self.commit()
-
     def commit(self):
         self.db.commit()
 
-    def add_password(self, password: str):
+    def add_user(self, username,password: str):
         hashed_pass = hashlib.sha256(password.encode()).hexdigest()
-        print(hashed_pass)
+        self.add_data_to_table(table_name = "users",rows_to_set = ("username","password"),data = (username,hashed_pass))
+    def create_tables(self):
+        self.create_table(table_name = "users",columns_names_types_and_constrains = (["username","text","not null unique"],["password","text","not null"]))
