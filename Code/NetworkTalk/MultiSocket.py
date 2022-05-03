@@ -1,9 +1,9 @@
 import socket
 from typing import Dict
 
-from Code import globals
-from Code.NetworkTalk.Computer import Computer
-from Code.NetworkTalk.constants import Constants
+import globals
+from NetworkTalk.Computer import Computer
+from constants import Constants
 from typing import *
 import ssl
 

@@ -33,7 +33,7 @@ def add_question_mark_and_equals(rows_names: Tuple) -> str:
     return returned_str[0:-2]
 
 
-def handle_columns_names_types_and_constrains(names_types_and_constrains: Tuple[List[str], ...]) -> str:
+def handle_columns_names_types_and_constrains(names_types_and_constrains: List[Tuple[str, ...]]) -> str:
     return_str = ""
     for column in names_types_and_constrains:
         if return_str == "":
@@ -50,8 +50,6 @@ class SQLClient(object):
     def get_data_from_table(self, table_name: str, where: str = None, variables: Tuple | Dict = None,
                             amount_to_fetch: int = 0,
                             data_to_select: str = "*") -> List | Any:
-        print(f"select {data_to_select} from {table_name} {where if where is not None else ''}",
-              variables)
         cursor = self.db.cursor()
         if variables is None:
             result = cursor.execute(f"select {data_to_select} from {table_name} {where if where is not None else ''}")
@@ -72,24 +70,49 @@ class SQLClient(object):
     def update_data_from_table(self, table_name: str, rows_to_update: Tuple, data: Tuple,
                                where: str = None):
         cursor = self.db.cursor()
-        print(
-            f"update {table_name} set {add_question_mark_and_equals(rows_to_update)} {where if where is not None else ''}",
-            data)
         cursor.execute(
             f"update {table_name} set {add_question_mark_and_equals(rows_to_update)} {where if where is not None else ''}",
             data)
         self.commit()
 
-    def create_table(self, table_name: str, columns_names_types_and_constrains: Tuple[List[str], ...],
+    def delete_data_from_table(self, table_name: str, data: Tuple, where: str = None):
+        cursor = self.db.cursor()
+        cursor.execute(f"delete from {table_name} {where}", data)
+        self.commit()
+
+    def create_table(self, table_name: str, columns_names_types_and_constrains: List[Tuple[str, ...]],
                      without_row_id: bool = False):
         cursor = self.db.cursor()
         cursor.execute(
             f"CREATE TABLE IF NOT EXISTS {table_name} {handle_columns_names_types_and_constrains(columns_names_types_and_constrains)} {'WITHOUT ROWID' if without_row_id else ''}")
         self.commit()
-
+    def delete_user(self, user:str):
+        self.delete_data_from_table(table_name="users",where="where username=?",data=(user,))
     def commit(self):
         self.db.commit()
 
-    def add_password(self, password: str):
-        hashed_pass = hashlib.sha256(password.encode()).hexdigest()
-        print(hashed_pass)
+    def get_user(self, password: str) -> Tuple[str, str]:
+        hashed_password = self.hash_password(password)
+        return self.get_data_from_table(table_name="users", where="where password=?", variables=(hashed_password,),
+                                        amount_to_fetch=1)
+
+    def add_user(self, username, password: str):
+        hashed_pass = self.hash_password(password)
+        self.add_data_to_table(table_name="users", rows_to_set=("username", "password"), data=(username, hashed_pass))
+
+    def create_tables(self):
+        self.create_table(table_name="users", columns_names_types_and_constrains=[
+            ("username", "text", "not null unique"), ("password", "text", "not null")])
+        self.create_table(table_name="host", columns_names_types_and_constrains=[("domain", "text", "not null unique")])
+
+    def get_host_rows(self) -> List[str]:
+        return self.get_data_from_table("host", amount_to_fetch=0)
+
+    def hash_password(self, password: str) -> str:
+        return hashlib.sha256(password.encode()).hexdigest()
+
+    def get_all_users(self):
+        return self.get_data_from_table("users")
+    
+    def get_password(self,username: str):
+        return self.get_data_from_table("host",amount_to_fetch=1,where="where username=?",data=username)

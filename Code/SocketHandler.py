@@ -1,10 +1,10 @@
 import logging
 from ssl import SSLSocket
-from Code.NetworkTalk.Computer import Computer
-from Code.NetworkTalk.MultiSocket import MultiSocket
+from NetworkTalk.Computer import Computer
+from NetworkTalk.MultiSocket import MultiSocket
 from typing import Tuple
 import threading
-from Code import globals
+import globals
 
 
 def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client_address: Tuple[str, int]):
@@ -22,6 +22,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
 
 def handle_connections_wrapper(my_sockets: MultiSocket):
     my_sockets.receiving_socket.listen()
+    print("server started listening listening")
     while True:
         client_socket, tcp_address = my_sockets.receiving_socket.accept()
         globals.logger.info(f"new client connected from {tcp_address}")

@@ -8,3 +8,14 @@ Code/logfile.log
 .idea/discord.xml
 .idea/5 units Project.iml
 *.iml
+Code/.idea/misc.xml
+*.xml
+*.crt
+*.key
+*.db
+*.toc
+*.pkg
+*.spec
+*.crt
+*.key
+*.crt
