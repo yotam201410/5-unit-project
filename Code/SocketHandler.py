@@ -22,6 +22,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
 
 def handle_connections_wrapper(my_sockets: MultiSocket):
     my_sockets.receiving_socket.listen()
+    print("server started listening listening")
     while True:
         client_socket, tcp_address = my_sockets.receiving_socket.accept()
         globals.logger.info(f"new client connected from {tcp_address}")

@@ -3,7 +3,7 @@ import threading
 from NetworkTalk.Computer import Computer
 from NetworkTalk.MultiSocket import MultiSocket
 import globals
-from NetworkTalk.constants import Constants
+from constants import Constants
 import socket
 import ssl
 
@@ -60,3 +60,4 @@ def start_broadcast_setup(my_sockets: MultiSocket):
         f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
     threading.Thread(target=broadcast, args=(my_sockets,)).start()
     threading.Thread(target=handle_broadcast_answer, args=(my_sockets,)).start()
+    print("Started Broadcasting")

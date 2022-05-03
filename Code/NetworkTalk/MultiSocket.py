@@ -3,7 +3,7 @@ from typing import Dict
 
 import globals
 from NetworkTalk.Computer import Computer
-from NetworkTalk.constants import Constants
+from constants import Constants
 from typing import *
 import ssl
 
