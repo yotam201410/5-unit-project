@@ -2,19 +2,20 @@ import re
 import socket
 import uuid
 from typing import List, Dict
-
+import ctypes, sys
 import SocketHandler
 import netifaces
 import ssl_generation
 from GUI.GUIClient import GUIClient
 from SQLManagment.SQLClient import SQLClient
 from StartUp.broadcasting import *
+from HostFileManagment.HostManagment import HostClient
 
 
-def start_up(my_sockets: MultiSocket, sql_client: SQLClient):
+def start_up(my_sockets: MultiSocket, sql_client: SQLClient,host_client:HostClient):
     sql_client.create_tables()
-    threading.Thread(target=start_broadcast_setup, args=(my_sockets,)).start()
-    threading.Thread(target=SocketHandler.handle_connections_wrapper, args=(my_sockets,)).start()
+    threading.Thread(target=start_broadcast_setup, args=(my_sockets,sql_client,host_client)).start()
+    threading.Thread(target=SocketHandler.handle_connections_wrapper, args=(my_sockets,sql_client,host_client)).start()
 
 
 def get_min(addr: List[Dict[str, str]], by: str):
@@ -53,8 +54,13 @@ def sort_addr(addr: List[Dict[str, str]], by: str):
         addr.remove(addr[index])
     return returned_list
 
-
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
 def main():
+    host_client = HostClient()
     db_client = SQLClient(db_file_name=Constants.DATABASE_FILE_NAME)
     print("DB is UP")
     addr = []
@@ -76,9 +82,12 @@ def main():
                             CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
     my_sockets = MultiSocket(my_computer)
 
-    start_up(my_sockets, db_client)
+    start_up(my_sockets, db_client,host_client)
     print("Socket Is Up")
-    gui = GUIClient(db_client, my_sockets)
+    gui = GUIClient(db_client, my_sockets,host_client=host_client)
 
+if is_admin():
+    main()
+else:
+    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
 
-main()

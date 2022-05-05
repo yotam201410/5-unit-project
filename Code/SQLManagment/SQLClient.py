@@ -47,6 +47,7 @@ class SQLClient(object):
     def __init__(self, db_file_name: str):
         self.db = sqlite3.connect(db_file_name, check_same_thread=False)
 
+
     def get_data_from_table(self, table_name: str, where: str = None, variables: Tuple | Dict = None,
                             amount_to_fetch: int = 0,
                             data_to_select: str = "*") -> List | Any:
