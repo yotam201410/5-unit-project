@@ -117,3 +117,9 @@ class SQLClient(object):
     
     def get_password(self,username: str):
         return self.get_data_from_table("host",amount_to_fetch=1,where="where username=?",data=username)
+def main():
+    c= SQLClient("database.db")
+    print(c.get_host_rows())
+    print(c.get_all_users())
+if __name__ == '__main__':
+    main()

@@ -1,5 +1,6 @@
 import socket
 from typing import Dict
+from SQLManagment.SQLClient import SQLClient
 
 import globals
 from NetworkTalk.Computer import Computer
@@ -47,3 +48,28 @@ class MultiSocket(object):
     @property
     def receiving_socket(self) -> ssl.SSLSocket:
         return self._receiving_socket
+    def sync_data(self,sql_client:SQLClient):
+        for connected_computer_ip in self.connected_computers:
+            server_socket = self.connected_computers[connected_computer_ip].server_socket
+            for user_data in sql_client.get_all_users():
+                server_socket.send(f"add user {user_data[0]} {user_data[1]}".encode())
+            for domain in sql_client.get_host_rows():
+                server_socket.send(f"add domain {domain[0]}".encode())
+    def add_user(self,username,password):
+        for connected_computer_ip in self.connected_computers:
+            server_socket = self.connected_computers[connected_computer_ip].server_socket
+            server_socket.send(f"add user {username} {password}".encode())
+    def add_domain(self,domain):
+        for connected_computer_ip in self.connected_computers:
+            server_socket = self.connected_computers[connected_computer_ip].server_socket
+            server_socket.send(f"add domain {domain}".encode())
+    def remove_domain(self,domain):
+        for connected_computer_ip in self.connected_computers:
+            server_socket = self.connected_computers[connected_computer_ip].server_socket
+            server_socket.send(f"remove domain {domain}".encode())
+    def remove_user(self,username):
+        for connected_computer_ip in self.connected_computers:
+            server_socket = self.connected_computers[connected_computer_ip].server_socket
+            server_socket.send(f"remove user {username}".encode())
+
+        
