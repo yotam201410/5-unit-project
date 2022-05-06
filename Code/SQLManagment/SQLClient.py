@@ -47,7 +47,6 @@ class SQLClient(object):
     def __init__(self, db_file_name: str):
         self.db = sqlite3.connect(db_file_name, check_same_thread=False)
 
-
     def get_data_from_table(self, table_name: str, where: str = None, variables: Tuple | Dict = None,
                             amount_to_fetch: int = 0,
                             data_to_select: str = "*") -> List | Any:
@@ -87,8 +86,10 @@ class SQLClient(object):
         cursor.execute(
             f"CREATE TABLE IF NOT EXISTS {table_name} {handle_columns_names_types_and_constrains(columns_names_types_and_constrains)} {'WITHOUT ROWID' if without_row_id else ''}")
         self.commit()
-    def delete_user(self, user:str):
-        self.delete_data_from_table(table_name="users",where="where username=?",data=(user,))
+
+    def delete_user(self, user: str):
+        self.delete_data_from_table(table_name="users", where="where username=?", data=(user,))
+
     def commit(self):
         self.db.commit()
 
@@ -114,12 +115,16 @@ class SQLClient(object):
 
     def get_all_users(self):
         return self.get_data_from_table("users")
-    
-    def get_password(self,username: str):
-        return self.get_data_from_table("host",amount_to_fetch=1,where="where username=?",data=username)
+
+    def get_password(self, username: str):
+        return self.get_data_from_table("host", amount_to_fetch=1, where="where username=?", data=username)
+
+
 def main():
-    c= SQLClient("database.db")
+    c = SQLClient("database.db")
     print(c.get_host_rows())
     print(c.get_all_users())
+
+
 if __name__ == '__main__':
     main()
