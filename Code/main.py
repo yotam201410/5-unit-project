@@ -76,17 +76,15 @@ def main():
 
     addr = sort_addr(addr, "addr")
     network_config = addr[1]
-    Constants.BROADCAST_IP = network_config["broadcast"]
     my_computer = Computer(ip=network_config["addr"],
                            mac=':'.join(re.findall('..', '%012x' % uuid.getnode())), name=socket.gethostname(),
                            port=Constants.LISTENING_SERVER_PORT, subnet_mask=network_config["netmask"])
     print(my_computer)
-    print(Constants.BROADCAST_IP)
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.SERVER_FILE}.key",
                             CERT_FILE=f"{Constants.SERVER_FILE}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
                             CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
-    my_sockets = MultiSocket(my_computer)
+    my_sockets = MultiSocket(my_computer, (network_config["broadcast"],Constants.UDP_LISTENING_PORT))
 
     start_up(my_sockets, db_client, host_client)
     print("Socket Is Up")

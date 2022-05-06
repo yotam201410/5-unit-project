@@ -17,7 +17,8 @@ class MultiSocket(object):
     connected_computers: Dict[str, Computer]
     _receiving_socket: ssl.SSLSocket | socket.socket
 
-    def __init__(self, computer: Computer):
+    def __init__(self, computer: Computer,broadcast_address: Tuple[str,int]):
+        self.broadcast_address = broadcast_address
         self.connected_computers = {}
         self._receiving_socket = socket.socket()
         self._broadcast_send_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
@@ -38,8 +39,8 @@ class MultiSocket(object):
         self._receiving_socket.listen()
 
     def broadcast_message(self, message: str) -> None:
-        self._broadcast_send_socket.sendto(message.encode(), (Constants.BROADCAST_IP, Constants.UDP_LISTENING_PORT))
-        globals.logger.info(f"sent broadcast '{message}'")
+        self._broadcast_send_socket.sendto(message.encode(), self.broadcast_address)
+        globals.logger.info(f"sent broadcast '{message}', {self.broadcast_address}")
 
     @property
     def udp_server_socket(self) -> socket.socket:

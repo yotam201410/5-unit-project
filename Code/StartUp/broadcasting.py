@@ -10,6 +10,7 @@ import ssl
 from SQLManagment.SQLClient import SQLClient
 from HostFileManagment.HostManagment import HostClient
 
+
 def handle_client_addition(connected_computer: Computer):
     if connected_computer.server_socket is None:
         connected_computer.server_socket = socket.socket()
@@ -25,7 +26,7 @@ def handle_client_addition(connected_computer: Computer):
             connected_computer.server_socket = None
 
 
-def handle_broadcast_answer(my_sockets: MultiSocket,sql_client: SQLClient,host_client: HostClient):
+def handle_broadcast_answer(my_sockets: MultiSocket, sql_client: SQLClient, host_client: HostClient):
     while True:
         data, udp_addrees = my_sockets.udp_server_socket.recvfrom(1024)
         if udp_addrees[0] != my_sockets.computer.ip:
@@ -51,7 +52,6 @@ def handle_broadcast_answer(my_sockets: MultiSocket,sql_client: SQLClient,host_c
                     f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
 
 
-
 def broadcast(my_sockets: MultiSocket):
     while True:
         my_sockets.broadcast_message("who is up")
@@ -59,9 +59,9 @@ def broadcast(my_sockets: MultiSocket):
         time.sleep(5)
 
 
-def start_broadcast_setup(my_sockets: MultiSocket,sql_client: SQLClient,host_client: HostClient):
+def start_broadcast_setup(my_sockets: MultiSocket, sql_client: SQLClient, host_client: HostClient):
     my_sockets.broadcast_message(
         f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
     threading.Thread(target=broadcast, args=(my_sockets,)).start()
-    threading.Thread(target=handle_broadcast_answer, args=(my_sockets,sql_client,host_client)).start()
+    threading.Thread(target=handle_broadcast_answer, args=(my_sockets, sql_client, host_client)).start()
     print("Started Broadcasting")
