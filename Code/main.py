@@ -81,6 +81,7 @@ def main():
                            mac=':'.join(re.findall('..', '%012x' % uuid.getnode())), name=socket.gethostname(),
                            port=Constants.LISTENING_SERVER_PORT, subnet_mask=network_config["netmask"])
     print(my_computer)
+    print(Constants.BROADCAST_IP)
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.SERVER_FILE}.key",
                             CERT_FILE=f"{Constants.SERVER_FILE}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
