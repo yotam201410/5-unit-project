@@ -5,12 +5,15 @@ from HostFileManagment.HostManagment import HostClient
 from SQLManagment.SQLClient import SQLClient
 from typing import List
 from NetworkTalk.MultiSocket import MultiSocket
+from functools import partial
 
 
 class GUIClient(object):
     buttons: List[tkinter.Button]
     labels: List[tkinter.Label]
-
+    host_client : HostClient
+    sql_client:SQLClient
+    multi_socket:MultiSocket
     def __init__(self, sql_client: SQLClient, multi_socket: MultiSocket,host_client: HostClient):
         self.host_client = host_client
         self.sql_client = sql_client
@@ -45,31 +48,37 @@ class GUIClient(object):
         setup_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Setup",
                                       command=lambda: self.sign_up(username_entry, password_entry))
         setup_button.grid(row=2, column=0, columnspan=1, padx=10, pady=10)
-        self.elements += [username_label, username_entry, password_entry, setup_button, password_label]
+        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5,text="refresh",command=self.refresh_setup_page)
+        refresh_button.grid(row=2,column=1, columnspan=1, padx=10, pady=10)
+        self.elements += [username_label, username_entry, password_entry, setup_button, password_label,refresh_button]
 
     def sign_up(self, username_entry: tkinter.Entry, password_entry: tkinter.Entry):
         error_label = tkinter.Label(self.root, width=35, borderwidth=5)
         self.elements.append(error_label)
         if username_entry.get() != '':
-            if password_entry.get() != '':
-                if re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$').match(
-                        password_entry.get()):
-                    if self.sql_client.get_data_from_table(table_name='users', where="where username=?",
-                                                           variables=(username_entry.get(),), amount_to_fetch=1,
-                                                           data_to_select="password") is None:
-                        username = username_entry.get()
-                        self.sql_client.add_user(username_entry.get(), password_entry.get())
-                        self.clear_page()
-                        self.create_host_page(username)
+            if " " not in username_entry.get():
+                if password_entry.get() != '':
+                    if re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$').match(
+                            password_entry.get()) and " " not in password_entry.get():
+                        if self.sql_client.get_data_from_table(table_name='users', where="where username=?",
+                                                            variables=(username_entry.get(),), amount_to_fetch=1,
+                                                            data_to_select="password") is None:
+                            username = username_entry.get()
+                            self.sql_client.add_user(username_entry.get(), password_entry.get())
+                            self.multi_socket.add_user(username_entry.get(),password_entry.get())
+                            self.clear_page()
+                            self.create_host_page(username)
+                        else:
+                            error_label.configure(text="Username already in usage")
                     else:
-                        error_label.configure(text="Username already in usage")
+                        error_label.config(width=150)
+                        error_label.configure(
+                            text="Password has to be more than 8 characters and have at list one digit,one lowercase "
+                                "letter, one uppercase letter and one symbol with no space")
                 else:
-                    error_label.config(width=100)
-                    error_label.configure(
-                        text="Password has to be more than 8 characters and have at list one digit,one lowercase "
-                             "letter, one uppercase letter and one symbol")
+                    error_label.configure(text="No password")
             else:
-                error_label.configure(text="No password")
+                error_label.configure(text="Username has to contian no spaces")
         else:
             error_label.configure(text="No username")
         try:
@@ -110,7 +119,7 @@ class GUIClient(object):
             label_domian = tkinter.Label(self.root, width=35, borderwidth=5, text=domain_name)
             label_domian.grid(row=row_counter, column=0, columnspan=1, padx=10, pady=10)
             delete_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Delete",
-                                           command=lambda: self.delete_domain(domain_name, user))
+                                           command=partial(self.delete_domain,domain_name,user))
             delete_button.grid(row=row_counter, column=1, columnspan=1, padx=10, pady=10)
             self.elements += [delete_button, label_domian]
             row_counter += 1
@@ -119,15 +128,24 @@ class GUIClient(object):
         add_domian_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Add domian",
                                            command=lambda: self.add_domain(domain_entry.get(), user))
         add_domian_button.grid(row=row_counter, column=1, columnspan=1, padx=10, pady=10)
+        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5,text="refresh",command=lambda : self.refresh_host_page(user))
+        refresh_button.grid(row=row_counter+1,column=0, columnspan=1, padx=10, pady=10)
+        sync_button = tkinter.Button(self.root, width=35, borderwidth=5,text="sync",command=self.sync)
+        sync_button.grid(row=row_counter+1,column=1, columnspan=1, padx=10, pady=10)
         delete_user = tkinter.Button(self.root, width=35, borderwidth=5, text="delete user",
                                      command=lambda: self.delete_user_page(user))
         delete_user.grid(row=row_counter + 1, column=2, columnspan=1, padx=10, pady=10)
-        self.elements += [add_domian_button, domain_entry, delete_user]
-
+        self.elements += [add_domian_button, domain_entry, delete_user,sync_button,refresh_button]
+    def sync(self):
+        self.multi_socket.sync_data(self.sql_client)
+    def refresh_host_page(self,user:str):
+        self.clear_page()
+        self.create_host_page(user)
     def delete_domain(self, domain_name, user):
         try:
             self.sql_client.delete_data_from_table("host", where="where domain=?", data=(domain_name,))
             self.host_client.remove_domain(domain_name)
+            self.multi_socket.remove_domain(domain_name)
             self.clear_page()
             self.create_host_page(user)
         except Exception as e:
@@ -137,6 +155,7 @@ class GUIClient(object):
         try:
             self.sql_client.add_data_to_table("host", rows_to_set=("domain",), data=(domain_name,))
             self.host_client.add_domain(domain_name)
+            self.multi_socket.add_domain(domain_name)
             self.clear_page()
             self.create_host_page(user)
         except sqlite3.IntegrityError:
@@ -158,6 +177,7 @@ class GUIClient(object):
     def delete_user(self, user, password: str):
         if self.sql_client.get_user(password) is not None and self.sql_client.get_user(password)[0] == user:
             self.sql_client.delete_user(user)
+            self.multi_socket.remove_user(user)
             self.clear_page()
             if len(self.sql_client.get_all_users()) == 0:
                 self.create_sign_up_page()
@@ -167,3 +187,9 @@ class GUIClient(object):
             error_label = tkinter.Label(self.root, width=35, borderwidth=5, text="Password doesnt match")
             error_label.grid(row=1, column=1, columnspan=10, padx=10, pady=10)
             self.elements.append(error_label)
+    def refresh_setup_page(self):
+        self.clear_page()
+        if len(self.sql_client.get_all_users()) == 0:
+            self.create_sign_up_page()
+        else:
+            self.create_login_page()

@@ -1,3 +1,4 @@
+from decimal import DecimalTuple
 import time
 import threading
 from NetworkTalk.Computer import Computer
@@ -28,8 +29,9 @@ def handle_broadcast_answer(my_sockets: MultiSocket,sql_client: SQLClient,host_c
     while True:
         data, udp_addrees = my_sockets.udp_server_socket.recvfrom(1024)
         if udp_addrees[0] != my_sockets.computer.ip:
-            globals.logger.info(f"RECIVED BROADCAST MESSAGE {data.decode()} from {udp_addrees}")
-            splited_data = data.decode().split(',')
+            decoded_data = data.decode()
+            globals.logger.info(f"RECIVED BROADCAST MESSAGE {decoded_data}) from {udp_addrees}")
+            splited_data = decoded_data.split(',')
             if splited_data[-1] == "up":
                 connected_computer = Computer(ip=splited_data[0], subnet_mask=splited_data[1], mac=splited_data[2],
                                               port=int(splited_data[3]), name=splited_data[4])
@@ -47,6 +49,7 @@ def handle_broadcast_answer(my_sockets: MultiSocket,sql_client: SQLClient,host_c
                     my_sockets.connected_computers[udp_addrees[0]] = Computer(ip=udp_addrees[0])
                 my_sockets.broadcast_message(
                     f"{my_sockets.computer.ip},{my_sockets.computer.subnet_mask},{my_sockets.computer.mac},{my_sockets.computer.port},{my_sockets.computer.name},up")
+
 
 
 def broadcast(my_sockets: MultiSocket):

@@ -18,7 +18,24 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
     while True:
         recived_data = client_socket.recv(1024)
         if recived_data != b'':
-            logging.info(f"got {recived_data} from {connected_computer}")
+            decoded_data= recived_data.decode()
+            logging.info(f"got {decoded_data} from {connected_computer}")
+            if decoded_data.startswith("added domain"):
+                splited_decoded_data= decoded_data.split(" ")
+                sql_client.add_data_to_table("host",("domain",),(splited_decoded_data[2],))
+                host_client.add_domain(splited_decoded_data[2])
+            elif decoded_data.startswith("removed domain"):
+                splited_decoded_data = decoded_data.split(" ")
+                sql_client.delete_data_from_table("host",where="where domain=?",data= (splited_decoded_data[2],))
+                host_client.delete_domain(splited_decoded_data[2])
+            elif decoded_data.startswith("add user"):
+                splited_decoded_data=decoded_data.split(" ")
+                sql_client.add_user(splited_decoded_data[2],splited_decoded_data[3])
+            elif decoded_data.startswith("remove user"):
+                splited_decoded_data = decoded_data.split(" ")
+                sql_client.delete_user(splited_decoded_data[2])
+
+            
 
 
 def handle_connections_wrapper(my_sockets: MultiSocket,sql_client: SQLClient,host_client: HostClient):
