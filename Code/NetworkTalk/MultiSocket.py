@@ -17,7 +17,7 @@ class MultiSocket(object):
     connected_computers: Dict[str, Computer]
     _receiving_socket: ssl.SSLSocket | socket.socket
 
-    def __init__(self, computer: Computer,broadcast_address: Tuple[str,int]):
+    def __init__(self, computer: Computer, broadcast_address: Tuple[str, int]):
         self.broadcast_address = broadcast_address
         self.connected_computers = {}
         self._receiving_socket = socket.socket()
@@ -49,28 +49,31 @@ class MultiSocket(object):
     @property
     def receiving_socket(self) -> ssl.SSLSocket:
         return self._receiving_socket
-    def sync_data(self,sql_client:SQLClient):
+
+    def sync_data(self, sql_client: SQLClient):
         for connected_computer_ip in self.connected_computers:
             server_socket = self.connected_computers[connected_computer_ip].server_socket
             for user_data in sql_client.get_all_users():
                 server_socket.send(f"add user {user_data[0]} {user_data[1]}".encode())
             for domain in sql_client.get_host_rows():
                 server_socket.send(f"add domain {domain[0]}".encode())
-    def add_user(self,username,password):
+
+    def add_user(self, username, password):
         for connected_computer_ip in self.connected_computers:
             server_socket = self.connected_computers[connected_computer_ip].server_socket
             server_socket.send(f"add user {username} {password}".encode())
-    def add_domain(self,domain):
+
+    def add_domain(self, domain):
         for connected_computer_ip in self.connected_computers:
             server_socket = self.connected_computers[connected_computer_ip].server_socket
             server_socket.send(f"add domain {domain}".encode())
-    def remove_domain(self,domain):
+
+    def remove_domain(self, domain):
         for connected_computer_ip in self.connected_computers:
             server_socket = self.connected_computers[connected_computer_ip].server_socket
             server_socket.send(f"remove domain {domain}".encode())
-    def remove_user(self,username):
+
+    def remove_user(self, username):
         for connected_computer_ip in self.connected_computers:
             server_socket = self.connected_computers[connected_computer_ip].server_socket
             server_socket.send(f"remove user {username}".encode())
-
-        

@@ -7,6 +7,7 @@ import threading
 import globals
 from SQLManagment.SQLClient import SQLClient
 from HostFileManagment.HostManagment import HostClient
+import sqlite3
 
 
 def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client_address: Tuple[str, int],
@@ -22,14 +23,14 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
         if recived_data != b'':
             decoded_data = recived_data.decode()
             logging.info(f"got {decoded_data} from {connected_computer}")
-            if decoded_data.startswith("added domain"):
+            if decoded_data.startswith("add domain"):
                 splited_decoded_data = decoded_data.split(" ")
                 sql_client.add_data_to_table("host", ("domain",), (splited_decoded_data[2],))
                 host_client.add_domain(splited_decoded_data[2])
-            elif decoded_data.startswith("removed domain"):
+            elif decoded_data.startswith("remove domain"):
                 splited_decoded_data = decoded_data.split(" ")
                 sql_client.delete_data_from_table("host", where="where domain=?", data=(splited_decoded_data[2],))
-                host_client.delete_domain(splited_decoded_data[2])
+                host_client.remove_domain(splited_decoded_data[2])
             elif decoded_data.startswith("add user"):
                 try:
                     splited_decoded_data = decoded_data.split(" ")
