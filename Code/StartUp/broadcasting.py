@@ -28,7 +28,9 @@ def handle_client_addition(connected_computer: Computer):
 
 def handle_broadcast_answer(my_sockets: MultiSocket, sql_client: SQLClient, host_client: HostClient):
     while True:
+        print(my_sockets.udp_server_socket)
         data, udp_addrees = my_sockets.udp_server_socket.recvfrom(1024)
+        print(my_sockets.udp_server_socket)
         if udp_addrees[0] != my_sockets.computer.ip:
             decoded_data = data.decode()
             globals.logger.info(f"RECIVED BROADCAST MESSAGE {decoded_data} from {udp_addrees}")

@@ -29,11 +29,21 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
                 sql_client.delete_data_from_table("host",where="where domain=?",data= (splited_decoded_data[2],))
                 host_client.delete_domain(splited_decoded_data[2])
             elif decoded_data.startswith("add user"):
-                splited_decoded_data=decoded_data.split(" ")
-                sql_client.add_user(splited_decoded_data[2],splited_decoded_data[3])
+                try:
+                    splited_decoded_data=decoded_data.split(" ")
+                    sql_client.add_user(splited_decoded_data[2],splited_decoded_data[3])
+                except sqlite3.IntegrityError:
+                    pass
+                except  Exception as e:
+                    raise  e
             elif decoded_data.startswith("remove user"):
-                splited_decoded_data = decoded_data.split(" ")
-                sql_client.delete_user(splited_decoded_data[2])
+                try:
+                    splited_decoded_data = decoded_data.split(" ")
+                    sql_client.delete_user(splited_decoded_data[2])
+                except sqlite3.IntegrityError:
+                    pass
+                except Exception as e:
+                    raise e
 
             
 
