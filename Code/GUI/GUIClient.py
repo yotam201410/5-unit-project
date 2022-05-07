@@ -49,7 +49,7 @@ class GUIClient(object):
         setup_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Setup",
                                       command=lambda: self.sign_up(username_entry, password_entry))
         setup_button.grid(row=2, column=0, columnspan=1, padx=10, pady=10)
-        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5, text="refresh",
+        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Refresh",
                                         command=self.refresh_setup_page)
         refresh_button.grid(row=2, column=1, columnspan=1, padx=10, pady=10)
         self.elements += [username_label, username_entry, password_entry, setup_button, password_label, refresh_button]
@@ -100,14 +100,17 @@ class GUIClient(object):
         password_entry.grid(row=1, column=1, columnspan=1, padx=10, pady=10)
         login_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Login",
                                       command=lambda: self.login(username_entry, password_entry))
-        login_button.grid(row=2, column=0, columnspan=1, padx=10, pady=10)
-        self.elements += [username_label, username_entry, password_entry, login_button, password_label]
+        login_button.grid(row=2, column=1, columnspan=1, padx=10, pady=10)
+        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Refresh",
+                                      command=self.refresh_setup_page)
+        refresh_button.grid(row=2, column=0, columnspan=1, padx=10, pady=10)
+        self.elements += [username_label, username_entry, password_entry, login_button, password_label,refresh_button]
 
     def login(self, username_entry: tkinter.Entry, password_entry: tkinter.Entry):
         user_data = self.sql_client.get_user(password_entry.get())
         if user_data is None or user_data[0] != username_entry.get():
             error_label = tkinter.Label(self.root, width=35, borderwidth=5, text="Password or username doesnt match")
-            error_label.grid(row=2, column=1, columnspan=10, padx=10, pady=10)
+            error_label.grid(row=2, column=2, columnspan=10, padx=10, pady=10)
             self.elements.append(error_label)
         else:
             self.clear_page()
@@ -125,17 +128,17 @@ class GUIClient(object):
             delete_button.grid(row=row_counter, column=1, columnspan=1, padx=10, pady=10)
             self.elements += [delete_button, label_domian]
             row_counter += 1
-        domain_entry = tkinter.Entry(self.root, width=35, borderwidth=5, text="enter domain here")
+        domain_entry = tkinter.Entry(self.root, width=35, borderwidth=5, text="Enter domain here")
         domain_entry.grid(row=row_counter, column=0, columnspan=1, padx=10, pady=10)
         add_domian_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Add domian",
                                            command=lambda: self.add_domain(domain_entry.get(), user))
         add_domian_button.grid(row=row_counter, column=1, columnspan=1, padx=10, pady=10)
-        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5, text="refresh",
+        refresh_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Refresh",
                                         command=lambda: self.refresh_host_page(user))
         refresh_button.grid(row=row_counter + 1, column=0, columnspan=1, padx=10, pady=10)
-        sync_button = tkinter.Button(self.root, width=35, borderwidth=5, text="sync", command=self.sync)
+        sync_button = tkinter.Button(self.root, width=35, borderwidth=5, text="Sync", command=self.sync)
         sync_button.grid(row=row_counter + 1, column=1, columnspan=1, padx=10, pady=10)
-        delete_user = tkinter.Button(self.root, width=35, borderwidth=5, text="delete user",
+        delete_user = tkinter.Button(self.root, width=35, borderwidth=5, text="Delete user",
                                      command=lambda: self.delete_user_page(user))
         delete_user.grid(row=row_counter + 1, column=2, columnspan=1, padx=10, pady=10)
         self.elements += [add_domian_button, domain_entry, delete_user, sync_button, refresh_button]
@@ -171,7 +174,7 @@ class GUIClient(object):
 
     def delete_user_page(self, user: str):
         self.clear_page()
-        password_label = tkinter.Label(self.root, width=35, borderwidth=5, text=f"enter the password of user: {user}")
+        password_label = tkinter.Label(self.root, width=35, borderwidth=5, text=f"Enter the password of user: {user}")
         password_label.grid(row=0, column=0, columnspan=1, padx=10, pady=10)
         password_entry = tkinter.Entry(self.root, width=35, borderwidth=5)
         password_entry.grid(row=0, column=1, columnspan=1, padx=10, pady=10)
