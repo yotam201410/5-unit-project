@@ -8,7 +8,9 @@ import globals
 from SQLManagment.SQLClient import SQLClient
 from HostFileManagment.HostManagment import HostClient
 
-def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client_address: Tuple[str, int],sql_client:SQLClient,host_client: HostClient):
+
+def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client_address: Tuple[str, int],
+                       sql_client: SQLClient, host_client: HostClient):
     if client_address[0] not in my_sockets.connected_computers:
         my_sockets.connected_computers[client_address[0]] = Computer(ip=client_address[0], client_socket=client_socket)
         connected_computer = my_sockets.connected_computers[client_address[0]]
@@ -18,24 +20,24 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
     while True:
         recived_data = client_socket.recv(1024)
         if recived_data != b'':
-            decoded_data= recived_data.decode()
+            decoded_data = recived_data.decode()
             logging.info(f"got {decoded_data} from {connected_computer}")
             if decoded_data.startswith("added domain"):
-                splited_decoded_data= decoded_data.split(" ")
-                sql_client.add_data_to_table("host",("domain",),(splited_decoded_data[2],))
+                splited_decoded_data = decoded_data.split(" ")
+                sql_client.add_data_to_table("host", ("domain",), (splited_decoded_data[2],))
                 host_client.add_domain(splited_decoded_data[2])
             elif decoded_data.startswith("removed domain"):
                 splited_decoded_data = decoded_data.split(" ")
-                sql_client.delete_data_from_table("host",where="where domain=?",data= (splited_decoded_data[2],))
+                sql_client.delete_data_from_table("host", where="where domain=?", data=(splited_decoded_data[2],))
                 host_client.delete_domain(splited_decoded_data[2])
             elif decoded_data.startswith("add user"):
                 try:
-                    splited_decoded_data=decoded_data.split(" ")
-                    sql_client.add_user(splited_decoded_data[2],splited_decoded_data[3])
+                    splited_decoded_data = decoded_data.split(" ")
+                    sql_client.add_user(splited_decoded_data[2], splited_decoded_data[3])
                 except sqlite3.IntegrityError:
                     pass
                 except  Exception as e:
-                    raise  e
+                    raise e
             elif decoded_data.startswith("remove user"):
                 try:
                     splited_decoded_data = decoded_data.split(" ")
@@ -45,13 +47,12 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
                 except Exception as e:
                     raise e
 
-            
 
-
-def handle_connections_wrapper(my_sockets: MultiSocket,sql_client: SQLClient,host_client: HostClient):
+def handle_connections_wrapper(my_sockets: MultiSocket, sql_client: SQLClient, host_client: HostClient):
     my_sockets.receiving_socket.listen()
     print("server started listening listening")
     while True:
         client_socket, tcp_address = my_sockets.receiving_socket.accept()
         globals.logger.info(f"new client connected from {tcp_address}")
-        threading.Thread(target=handle_connections, args=(my_sockets, client_socket, tcp_address,sql_client,host_client)).start()
+        threading.Thread(target=handle_connections,
+                         args=(my_sockets, client_socket, tcp_address, sql_client, host_client)).start()

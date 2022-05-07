@@ -44,7 +44,6 @@ class HostClient:
             splitted_line = line.split(" ")
             if len(splitted_line) == 2:
                 if splitted_line[1] == domain:
-                    print(splitted_line)
                     return True
         return False
 
