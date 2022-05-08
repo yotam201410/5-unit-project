@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2022-05-08T09:25:06.122Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="9cJD4kKscCcABL0IHZYy" version="18.0.2" type="github">
+  <diagram id="kcZoUj98T1McFmsQdIpL" name="Page-1">
+    <mxGraphModel dx="1038" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7_EGzeScnFck8tkmSKCv-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-1" target="7_EGzeScnFck8tkmSKCv-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-1" value="הצגת דף כניסה" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-2" target="7_EGzeScnFck8tkmSKCv-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-2" value="קליטת שם משתמש וסיסמא" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-4" target="7_EGzeScnFck8tkmSKCv-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-4" value="בקשת הסיסמא עם השם&amp;nbsp; משתמש הזה ממסד הנתונים" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-6" target="7_EGzeScnFck8tkmSKCv-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-6" value="הצפנת הסיסמא שנקלטה" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-8" target="7_EGzeScnFck8tkmSKCv-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-8" target="7_EGzeScnFck8tkmSKCv-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-8" value="בדיקה האם הסיסמא הנקלטת שווה לסיסמא הקיימת" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7_EGzeScnFck8tkmSKCv-11" target="7_EGzeScnFck8tkmSKCv-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-11" value="הצגת הודעה שהמשתמש או הסיסמא לא נכונים" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7_EGzeScnFck8tkmSKCv-14" value="הכנסת המשתמש למערכת והצגת מסך הניהול חסימה" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="710" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
