@@ -1,1 +1,76 @@
-<mxfile host="app.diagrams.net" modified="2022-05-08T10:45:20.947Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" version="18.0.2" etag="dwcA8ULTNDWvuV1fnVbX" type="github"><diagram id="ThZCfaptE6zHHOC-SI7Z">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-05-09T10:51:57.034Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="ph2LqCkuJYD3wk8RkxPW" version="18.0.2" type="github">
+  <diagram id="ThZCfaptE6zHHOC-SI7Z" name="Page-1">
+    <mxGraphModel dx="1038" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-1" target="GZ7Y9vaMLVSa88P8yATq-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-1" value="הצגת דף מחיקת משתמשים" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-3" target="GZ7Y9vaMLVSa88P8yATq-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-3" value="קליטת סיסמא מהמשתמש" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-5" target="GZ7Y9vaMLVSa88P8yATq-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-5" value="הצפנת הסיסמא" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-7" target="GZ7Y9vaMLVSa88P8yATq-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-7" value="בקשת הסיסמא באמצעות שם המשתמש ממסד הנתונים" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-9" target="GZ7Y9vaMLVSa88P8yATq-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="180" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="270" y="500" />
+              <mxPoint x="270" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-9" target="GZ7Y9vaMLVSa88P8yATq-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-9" value="בדיקה האם הסיסמאות שוות" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-12" target="GZ7Y9vaMLVSa88P8yATq-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-12" value="מחיקת המשתמש ממסד הנתונים" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-14" target="GZ7Y9vaMLVSa88P8yATq-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-14" value="שליחה לכל המחשבים על כך שנמחק משתמש" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-16" target="GZ7Y9vaMLVSa88P8yATq-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GZ7Y9vaMLVSa88P8yATq-16" target="GZ7Y9vaMLVSa88P8yATq-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-16" value="בדיקה האם יש עוד משתמשים במסד הנתונים" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="750" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-18" value="אם כן הצגת דף כניסה" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="890" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ7Y9vaMLVSa88P8yATq-20" value="אם לא הצגת דף הרשמה" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="750" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
