@@ -57,3 +57,6 @@ def handle_connections_wrapper(my_sockets: MultiSocket, sql_client: SQLClient, h
         globals.logger.info(f"new client connected from {tcp_address}")
         threading.Thread(target=handle_connections,
                          args=(my_sockets, client_socket, tcp_address, sql_client, host_client)).start()
+
+
+

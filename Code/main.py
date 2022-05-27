@@ -90,8 +90,8 @@ def main():
     print("Socket Is Up")
     gui = GUIClient(db_client, my_sockets, host_client=host_client)
 
-
-if is_admin():
-    main()
-else:
-    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+if __name__ == '__main__':
+    if is_admin():
+        main()
+    else:
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
