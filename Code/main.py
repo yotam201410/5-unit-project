@@ -10,7 +10,7 @@ from GUI.GUIClient import GUIClient
 from SQLManagment.SQLClient import SQLClient
 from StartUp.broadcasting import *
 from HostFileManagment.HostManagment import HostClient
-
+from WebApp import http_app,https_app
 
 def start_up(my_sockets: MultiSocket, sql_client: SQLClient, host_client: HostClient):
     sql_client.create_tables()
@@ -84,11 +84,15 @@ def main():
                             CERT_FILE=f"{Constants.SERVER_FILE}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
                             CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
-    my_sockets = MultiSocket(my_computer, (network_config["broadcast"],Constants.UDP_LISTENING_PORT))
+    my_sockets = MultiSocket(my_computer, (network_config["broadcast"], Constants.UDP_LISTENING_PORT))
 
     start_up(my_sockets, db_client, host_client)
     print("Socket Is Up")
+    threading.Thread(target = http_app.main).start()
+    threading.Thread(target=https_app.main).start()
+    print("http/s servers are up")
     gui = GUIClient(db_client, my_sockets, host_client=host_client)
+
 
 if __name__ == '__main__':
     if is_admin():
