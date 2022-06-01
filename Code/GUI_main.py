@@ -64,7 +64,6 @@ def is_admin():
 
 
 def main():
-    host_client = HostClient()
     db_client = SQLClient(db_file_name=Constants.DATABASE_FILE_NAME)
     print("DB is UP")
     addr = []
@@ -84,14 +83,8 @@ def main():
                             CERT_FILE=f"{Constants.SERVER_FILE}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
                             CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
-    my_sockets = MultiSocket(my_computer, (network_config["broadcast"], Constants.UDP_LISTENING_PORT))
 
-    start_up(my_sockets, db_client, host_client)
-    print("Socket Is Up")
-    threading.Thread(target = http_app.main).start()
-    threading.Thread(target=https_app.main).start()
-    print("http/s servers are up")
-    gui = GUIClient(db_client, my_sockets, host_client=host_client)
+    gui = GUIClient(db_client,my_computer.ip,Constants.server_port)
 
 
 if __name__ == '__main__':

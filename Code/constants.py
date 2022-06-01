@@ -5,3 +5,4 @@ class Constants:
     BROADCAST_IP = "192.168.1.255"
     SERVER_FILE = "server"
     CLIENT_FILE = "client"
+    server_port=3000

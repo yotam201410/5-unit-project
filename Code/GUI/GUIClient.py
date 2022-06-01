@@ -1,5 +1,6 @@
 import re
 import sqlite3
+import ssl
 import tkinter
 from HostFileManagment.HostManagment import HostClient
 from SQLManagment.SQLClient import SQLClient
@@ -7,19 +8,21 @@ from typing import List
 from NetworkTalk.MultiSocket import MultiSocket
 from functools import partial
 from tkinter import ttk
-
+import socket
+import constants
 
 class GUIClient(object):
     buttons: List[ttk.Button]
     labels: List[ttk.Label]
-    host_client: HostClient
     sql_client: SQLClient
     multi_socket: MultiSocket
 
-    def __init__(self, sql_client: SQLClient, multi_socket: MultiSocket, host_client: HostClient):
-        self.host_client = host_client
+    def __init__(self, sql_client: SQLClient, ip,port):
         self.sql_client = sql_client
-        self.multi_socket = multi_socket
+        self.client_socket = socket.socket()
+        self.client_socket = ssl.wrap_socket(self.client_socket,keyfile = "client.key",certfile = "client.crt")
+        self.client_socket.connect((ip,port))
+        print(self.client_socket)
         self.root = tkinter.Tk(screenName="Guard Client")
         self.root.title("Guard Client")
         self.elements = []
@@ -67,8 +70,10 @@ class GUIClient(object):
                                                                variables=(username_entry.get(),), amount_to_fetch=1,
                                                                data_to_select="password") is None:
                             username = username_entry.get()
-                            self.sql_client.add_user(username_entry.get(), password_entry.get())
-                            self.multi_socket.add_user(username_entry.get(), password_entry.get())
+                            password = password_entry.get()
+                            self.sql_client.add_user(username, password)
+                            username,password = self.sql_client.get_user(password)
+                            self.client_socket.send(f"sign_up {username} {password}".encode())
                             self.clear_page()
                             self.create_host_page(username)
                         else:
@@ -145,7 +150,10 @@ class GUIClient(object):
         self.elements += [add_domian_button, domain_entry, delete_user, sync_button, refresh_button]
 
     def sync(self):
-        self.multi_socket.sync_data(self.sql_client)
+        for user_data in self.sql_client.get_all_users():
+            self.client_socket.send(f"sign_up {user_data[0]} {user_data[1]}".encode())
+        for domain in self.sql_client.get_host_rows():
+            self.client_socket.send(f"add_domain {domain[0]}".encode())
 
     def refresh_host_page(self, user: str):
         self.clear_page()
@@ -154,8 +162,7 @@ class GUIClient(object):
     def delete_domain(self, domain_name, user):
         try:
             self.sql_client.delete_data_from_table("host", where="where domain=?", data=(domain_name,))
-            self.host_client.remove_domain(domain_name)
-            self.multi_socket.remove_domain(domain_name)
+            self.client_socket.send(f"remove_domain {domain_name}".encode())
             self.clear_page()
             self.create_host_page(user)
         except Exception as e:
@@ -164,8 +171,7 @@ class GUIClient(object):
     def add_domain(self, domain_name: str, user: str):
         try:
             self.sql_client.add_data_to_table("host", rows_to_set=("domain",), data=(domain_name,))
-            self.host_client.add_domain(domain_name)
-            self.multi_socket.add_domain(domain_name)
+            self.client_socket.send(f"add_domain {domain_name}".encode())
             self.clear_page()
             self.create_host_page(user)
         except sqlite3.IntegrityError:
@@ -187,7 +193,7 @@ class GUIClient(object):
     def delete_user(self, user, password: str):
         if self.sql_client.get_user(password) is not None and self.sql_client.get_user(password)[0] == user:
             self.sql_client.delete_user(user)
-            self.multi_socket.remove_user(user)
+            self.client_socket.send(f"delete_user {user}".encode())
             self.clear_page()
             if len(self.sql_client.get_all_users()) == 0:
                 self.create_sign_up_page()
