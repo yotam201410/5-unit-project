@@ -70,21 +70,25 @@ def handle_gui_messages(connected_socket,my_sockets,host_client):
             can_connect=False
             decrypted_data = data.decode()
             if decrypted_data.startswith("sign_up"):
+                print(decrypted_data)
                 splited = decrypted_data.split(" ")
                 username = splited[1]
                 password = splited[2]
                 my_sockets.add_user(username, password)
             elif decrypted_data.startswith("add_domain"):
+                print(decrypted_data)
                 splited = decrypted_data.split(" ")
                 domain = splited[1]
                 host_client.add_domain(domain)
                 my_sockets.add_domain(domain)
             elif decrypted_data.startswith("remove_domain"):
+                print(decrypted_data)
                 splited = decrypted_data.split(" ")
                 domain = splited[1]
                 host_client.remove_domain(domain)
                 my_sockets.remove_domain(domain)
             elif decrypted_data.startswith("delete_user"):
+                print(decrypted_data)
                 splited = decrypted_data.split(" ")
                 username = splited[1]
                 my_sockets.remove_user(username)
