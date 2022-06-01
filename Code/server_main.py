@@ -61,9 +61,49 @@ def is_admin():
         return ctypes.windll.shell32.IsUserAnAdmin()
     except:
         return False
+def start_gui_connection(ip,port,my_sockets:MultiSocket,host_client: HostClient):
+    server_socket = socket.socket()
+    server_socket = ssl.wrap_socket(server_socket,keyfile="server.key",server_side=True,certfile="server.crt")
+    server_socket.bind((ip,port))
+    server_socket.listen()
+    print(server_socket)
+    while True:
+        try:
+            connected_socket,__ = server_socket.accept()
+            while True:
+                try:
+                    data = connected_socket.recv(1024)
+                    decrypted_data = data.decode()
+                    print(decrypted_data)
+                    if decrypted_data.startswith("sign_up"):
+                        splited = decrypted_data.split(" ")
+                        username=splited[1]
+                        password = splited[2]
+                        my_sockets.add_user(username,password)
+                    elif decrypted_data.startswith("add_domain"):
+                        splited = decrypted_data.split(" ")
+                        domain=splited[1]
+                        host_client.add_domain(domain)
+                        my_sockets.add_domain(domain)
+                    elif decrypted_data.startswith("remove_domain"):
+                        splited = decrypted_data.split(" ")
+                        domain=splited[1]
+                        host_client.remove_domain(domain)
+                        my_sockets.remove_domain(domain)
+                    elif decrypted_data.startswith("remove_user"):
+                        splited = decrypted_data.split(" ")
+                        username=splited[1]
+                        my_sockets.remove_user(username)
+                except Exception as e:
+                    raise e 
+        except Exception as e:
+            raise e 
+
+
 
 
 def main():
+    host_client = HostClient()
     db_client = SQLClient(db_file_name=Constants.DATABASE_FILE_NAME)
     print("DB is UP")
     addr = []
@@ -83,8 +123,15 @@ def main():
                             CERT_FILE=f"{Constants.SERVER_FILE}.crt")
     ssl_generation.cert_gen(commonName=my_computer.name, KEY_FILE=f"{Constants.CLIENT_FILE}.key",
                             CERT_FILE=f"{Constants.CLIENT_FILE}.crt")
+    my_sockets = MultiSocket(my_computer, (network_config["broadcast"], Constants.UDP_LISTENING_PORT))
 
-    gui = GUIClient(db_client,my_computer.ip,Constants.server_port)
+    start_up(my_sockets, db_client, host_client)
+    print("Socket Is Up")
+    threading.Thread(target = http_app.main).start()
+    threading.Thread(target=https_app.main).start()
+    print("http/s servers are up")
+    threading.Thread(target=start_gui_connection,args=(my_computer.ip,Constants.server_port,my_sockets,host_client)).start()
+
 
 
 if __name__ == '__main__':
