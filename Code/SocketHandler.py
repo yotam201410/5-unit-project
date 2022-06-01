@@ -34,7 +34,7 @@ def handle_connections(my_sockets: MultiSocket, client_socket: SSLSocket, client
             elif decoded_data.startswith("add user"):
                 try:
                     splited_decoded_data = decoded_data.split(" ")
-                    sql_client.add_user(splited_decoded_data[2], splited_decoded_data[3])
+                    sql_client.add_user(splited_decoded_data[2], splited_decoded_data[3],hashed=False)
                 except sqlite3.IntegrityError:
                     pass
                 except  Exception as e:

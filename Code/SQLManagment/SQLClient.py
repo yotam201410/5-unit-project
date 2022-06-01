@@ -98,9 +98,9 @@ class SQLClient(object):
         return self.get_data_from_table(table_name="users", where="where password=?", variables=(hashed_password,),
                                         amount_to_fetch=1)
 
-    def add_user(self, username, password: str):
+    def add_user(self, username, password: str,hashed=True):
         hashed_pass = self.hash_password(password)
-        self.add_data_to_table(table_name="users", rows_to_set=("username", "password"), data=(username, hashed_pass))
+        self.add_data_to_table(table_name="users", rows_to_set=("username", "password"), data=(username, hashed_pass if hashed else password))
 
     def create_tables(self):
         self.create_table(table_name="users", columns_names_types_and_constrains=[
