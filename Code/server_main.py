@@ -90,7 +90,7 @@ def start_gui_connection(ip,port,my_sockets:MultiSocket,host_client: HostClient)
                         domain=splited[1]
                         host_client.remove_domain(domain)
                         my_sockets.remove_domain(domain)
-                    elif decrypted_data.startswith("remove_user"):
+                    elif decrypted_data.startswith("delete_user"):
                         splited = decrypted_data.split(" ")
                         username=splited[1]
                         my_sockets.remove_user(username)
