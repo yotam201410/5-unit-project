@@ -150,9 +150,9 @@ class GUIClient(object):
 
     def sync(self):
             for user_data in self.sql_client.get_all_users():
-                self.client_socket.send(f"add user {user_data[0]} {user_data[1]}".encode())
+                self.client_socket.send(f"sign_up {user_data[0]} {user_data[1]}".encode())
             for domain in self.sql_client.get_host_rows():
-                self.client_socket.send(f"add domain {domain[0]}".encode())
+                self.client_socket.send(f"add_domain {domain[0]}".encode())
 
     def refresh_host_page(self, user: str):
         self.clear_page()
