@@ -70,8 +70,9 @@ class GUIClient(object):
                                                                variables=(username_entry.get(),), amount_to_fetch=1,
                                                                data_to_select="password") is None:
                             username = username_entry.get()
-                            self.sql_client.add_user(username_entry.get(), password_entry.get())
-                            username,password = self.sql_client.get_user(password_entry.get())
+                            password = password_entry.get()
+                            self.sql_client.add_user(username, password)
+                            username,password = self.sql_client.get_user(password)
                             self.client_socket.send(f"sign_up {username} {password}".encode())
                             self.clear_page()
                             self.create_host_page(username)
@@ -149,10 +150,10 @@ class GUIClient(object):
         self.elements += [add_domian_button, domain_entry, delete_user, sync_button, refresh_button]
 
     def sync(self):
-            for user_data in self.sql_client.get_all_users():
-                self.client_socket.send(f"sign_up {user_data[0]} {user_data[1]}".encode())
-            for domain in self.sql_client.get_host_rows():
-                self.client_socket.send(f"add_domain {domain[0]}".encode())
+        for user_data in self.sql_client.get_all_users():
+            self.client_socket.send(f"sign_up {user_data[0]} {user_data[1]}".encode())
+        for domain in self.sql_client.get_host_rows():
+            self.client_socket.send(f"add_domain {domain[0]}".encode())
 
     def refresh_host_page(self, user: str):
         self.clear_page()

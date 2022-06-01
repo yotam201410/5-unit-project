@@ -72,6 +72,7 @@ def start_gui_connection(ip,port,my_sockets:MultiSocket,host_client: HostClient)
             connected_socket,__ = server_socket.accept()
             while True:
                 try:
+                    print(connected_socket)
                     data = connected_socket.recv(1024)
                     decrypted_data = data.decode()
                     print(decrypted_data)
